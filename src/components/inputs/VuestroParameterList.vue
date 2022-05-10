@@ -112,7 +112,7 @@
         <vuestro-dropdown v-else-if="p.type === 'option'" stretch>
           <template #button>
             <vuestro-button pill value variant="info">
-              {{ getValueOrSetDefault(p) || 'Select...' }}
+              {{ renderOptionLabel(getValueOrSetDefault(p)) }}
             </vuestro-button>
           </template>
           <template #default="{ close }">
@@ -246,6 +246,12 @@ export default {
     },
     toggleCollapse(param) {
       this.$set(this.collapsed, param.field, !this.collapsed[param.field]);
+    },
+    renderOptionLabel(value) {
+      if (value === null || value === undefined) {
+        return 'Select...';
+      }
+      return value;
     },
   },
 };

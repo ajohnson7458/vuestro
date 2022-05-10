@@ -60,7 +60,7 @@ export default {
           description: 'Example of option select',
           field: 'proto',
           type: 'option',
-          options: ['tcp', 'http', 'https'],
+          options: ['tcp', 'http', 'https', 0],
           // default: 'tcp',
         },
         {
