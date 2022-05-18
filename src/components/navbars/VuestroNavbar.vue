@@ -104,7 +104,6 @@ export default {
         this.ribbonOpen = false;
       }
       this.selectedRoute = c;
-      console.log(this.ribbonOpen)
     },
   },
 };

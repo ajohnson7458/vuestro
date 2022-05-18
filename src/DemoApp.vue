@@ -32,6 +32,15 @@
           </vuestro-text-field>
         </template>
         <template #buttons>
+          <vuestro-tooltip position="bottom">
+            <template #content>
+              hello this is a tooltip with components inside
+              <vuestro-button>test</vuestro-button>
+            </template>
+            <vuestro-button no-border round>
+              <vuestro-icon name="info"></vuestro-icon>
+            </vuestro-button>
+          </vuestro-tooltip>
           <vuestro-notifications grouped></vuestro-notifications>
         </template>
       </vuestro-navbar>

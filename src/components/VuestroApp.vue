@@ -1,11 +1,11 @@
 //
-// This is the main entry point to Vuestro, your app should have this at the outermost layer
+// This is the main entry point to Vuestro, your app should have an instance of this component at the outermost layer
 //
 <template>
   <div class="vuestro-app" :class="{ mobile: $root.mobile, 'vuestro-dark': isDark }">
     <transition name="vuestro-app-modes" mode="out-in">
       <!--MAIN TEMPLATE-->
-      <div v-if="authenticated && !loading" key="main">
+      <div v-if="authenticated && !loading" class="vuestro-app-main" key="main">
 
         <!--NAVBAR SLOT-->
         <slot name="navbar"></slot>
@@ -383,7 +383,6 @@ export default {
   display: flex;
   overflow: hidden; /* lets .vuestro-router-view do the scrolling */
   transition: all var(--vuestro-primary-transition-time);
-  z-index: 1;
 }
 
 .vuestro-router-view {
@@ -395,10 +394,12 @@ export default {
   overflow: auto;
 }
 
+/* global override of input font */
 .vuestro-app >>> input {
   font-family: 'Vuestro';
 }
 
+/* global override of link colors */
 .vuestro-app >>> a {
   color: var(--vuestro-primary);
 }
