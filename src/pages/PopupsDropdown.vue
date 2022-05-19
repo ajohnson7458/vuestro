@@ -100,15 +100,15 @@
               <template #icon>
                 <vuestro-icon name="bullhorn"></vuestro-icon>
               </template>
-              Click Me to open drop down
+              {{ selectedString }}
             </vuestro-button>
           </template>
           <template #default>
-            <vuestro-pill clickable @click="onClick">
+            <vuestro-pill @click="selectedString = 'Xylophone'">
               <template #value>Xylophone</template>
             </vuestro-pill>
-            <vuestro-list-button>Menu Item 1</vuestro-list-button>
-            <vuestro-list-button>Menu Item 2</vuestro-list-button>
+            <vuestro-list-button @click="selectedString = 'Menu Item 1'">Menu Item 1</vuestro-list-button>
+            <vuestro-list-button @click="selectedString = 'Menu Item 2'">Menu Item 2</vuestro-list-button>
           </template>
         </vuestro-dropdown>
         <vuestro-dropdown close-on-content-click right>
@@ -219,6 +219,7 @@ export default {
   name: 'PopupsDropdown',
   data() {
     return {
+      selectedString: 'Click Me to open and select another string',
       selectedId: null,
       exampleDatasetWithIds: [
         {
