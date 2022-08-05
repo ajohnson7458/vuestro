@@ -312,16 +312,18 @@
     <vuestro-card>
       <template #description>
         <span>
-          Buttons will stretch to available space by setting the <vuestro-code>stretch</vuestro-code> property
+          Buttons will stretch to available flexbox space by setting the <vuestro-code>stretch</vuestro-code> property
         </span>
       </template>
-      <vuestro-button stretch>Button</vuestro-button>
-      <vuestro-button pill stretch>Button</vuestro-button>
-      <vuestro-button stretch justify="flex-start">flex-start justified</vuestro-button>
-      <vuestro-button stretch justify="flex-start">
-        <template #placeholder>Type</template>
-        flex-start justified with placeholder
-      </vuestro-button>
+      <div style="display: flex">
+        <vuestro-button stretch>Button</vuestro-button>
+        <vuestro-button pill stretch>Button</vuestro-button>
+        <vuestro-button stretch justify="flex-start">flex-start justified</vuestro-button>
+        <vuestro-button stretch justify="flex-start">
+          <template #placeholder>Type</template>
+          flex-start justified with placeholder
+        </vuestro-button>
+      </div>
     </vuestro-card>
 
 

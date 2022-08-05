@@ -504,6 +504,7 @@ export default {
 
 .grid-footer {
   margin-left: 20px;
+  display: flex;
 }
 
 </style>

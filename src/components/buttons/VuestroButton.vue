@@ -132,6 +132,7 @@ export default {
   align-items: center;
   min-width: 1px;
 }
+/* set flexbox stretch and grow to take up available flex space */
 .vuestro-button.stretch {
   align-self: stretch;
   flex-grow: 1;
@@ -144,6 +145,7 @@ export default {
   color: var(--variant-color);
   cursor: pointer;
   display: flex;
+  flex-grow: 1; /* always grow to size of outer */
   align-items: center;
   overflow: hidden;
   position: relative;
@@ -190,11 +192,6 @@ export default {
   height: var(--vuestro-control-xl-height);
   padding: 0 calc(var(--vuestro-control-sm-height) * 0.4);
   font-size: calc(var(--vuestro-control-xl-height) * 0.6);
-}
-.vuestro-button.stretch > .vuestro-button-inner {
-  align-self: stretch;
-  flex-grow: 1;
-  height: 100%;
 }
 .vuestro-button-inner.noBorder {
   border: none;
@@ -326,6 +323,7 @@ export default {
 
 /* checkbox mode */
 .vuestro-button-inner.checkbox {
+  flex-grow: 0; /* cancel grow as it will stretch the checkbox */
   padding: 0; /* clear padding */
   border: var(--vuestro-control-border-width) solid var(--vuestro-field-bg);
   background-color: var(--vuestro-field-bg);
