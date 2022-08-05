@@ -67,6 +67,10 @@ export default {
   fill: var(--vuestro-info);
 }
 
+/* fix for vue-awesome 4.5.0 color regression */
+.vuestro-icon >>> .fa-icon {
+  fill: currentColor;
+}
 
 .vuestro-app.mobile .vuestro-icon > svg {
   width: 0.8em;

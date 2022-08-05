@@ -177,6 +177,7 @@ export default {
         'flag',
         'folder',
         'folder-open',
+        'brands/gitlab',
         'globe-americas',
         'brands/google',
         'hammer',
