@@ -407,4 +407,9 @@ export default {
   color: var(--vuestro-purple);
 }
 
+.vuestro-app >>> p {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
 </style>
