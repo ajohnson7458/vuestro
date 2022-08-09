@@ -32,6 +32,14 @@
     </vuestro-card>
 
     <vuestro-card>
+      <template #subheading>VuestroCode</template>
+      <template #description><span>A component to use for displaying code or code-like snippets using monospace font, add the <vuestro-code>clipboard</vuestro-code> property to add a copy button</span></template>
+      <p>
+        <vuestro-code>x = 1;</vuestro-code> or copyable: <vuestro-code clipboard>y = 2;</vuestro-code>
+      </p>
+    </vuestro-card>
+
+    <vuestro-card>
       <template #subheading>Async Text</template>
       <template #description>
         <span>Simple spinner that shows for a text field that evaluates to null or undefined.</span>
