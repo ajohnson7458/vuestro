@@ -59,7 +59,7 @@
              :readonly="readonly"
              @focus="onFocus"
              @focusout="onFocusOut"
-             @input="updateValue"
+             @input="updateValueWrapper"
              @keyup="onKeyUp">
       </input>
       <!--UNIT-->
@@ -100,13 +100,19 @@
       </span>
     </div>
     <!--TEMPLATIZED DROPDOWN MENU-->
-    <div v-if="$scopedSlots.dropdown"
+    <div v-if="$scopedSlots.dropdown || vuexAutocompletes.length > 0"
          class="vuestro-text-field-dropdown vuestro-dark"
          :style="{ visibility: showDropdown ? 'visible':'hidden'}">
         <slot name="dropdown"
               :closeDropdown="closeDropdown"
               :clear="onClear">
         </slot>
+        <div v-if="vuexAutocomplete">
+          <vuestro-list-button v-for="a in vuexAutocompletes" :key="a"
+                               @click="updateValue(a); closeDropdown()">
+            {{ a }}
+          </vuestro-list-button>
+        </div>
     </div>
     <!--DYNAMIC PLACEHOLDER (only for regular and outline variants)-->
     <div v-if="placeholder && (variant === 'regular' || variant === 'outline')"
@@ -139,7 +145,8 @@ export default {
     selected: { type: Boolean, default: false },      // set true for all text selected by default
     readonly: { type: Boolean, default: false },      // set true for readonly
     validate: { type: Function, default: () => { return false; } }, // return true or string to set invalid state
-    autocomplete: { type: String, default: null },    // standard autocomplete field for input el
+    autocomplete: { type: [Object, String], default: null }, // either true for passing the autocomplete field to the input el
+                                                             // or an object: { key:'', getter:'', action:'' } to use vuex to show autocomplete
     spellcheck: { type: String, default: null },      // standard spellcheck field for input el
     stretch: { type: Boolean, default: false },       // set true for flexbox grow
     autoFocus: { type: Boolean, default: false },     // set true for focus on mount (last one wins)
@@ -155,7 +162,8 @@ export default {
       style: {},                // style object
       placeholderStyle: {},     // placeholder style object
       beginValidation: false,   // flag to delay validation until user has typed something
-      copiedToClipboard: false,
+      copiedToClipboard: false, // flag to track copy to clipboard success
+      vuexAutocomplete: false,  // flag for vuex-based autocomplete
     };
   },
   computed: {
@@ -200,6 +208,13 @@ export default {
       }
       return null;
     },
+    vuexAutocompletes() {
+      if (this.vuexAutocomplete && this.autocomplete.getter && this.autocomplete.key) {
+        // getter needs to take a key argument and return array of values
+        return this.$store.getters[this.autocomplete.getter](this.autocomplete.key) || [];
+      }
+      return [];
+    },
   },
   watch: {
     value(newVal) {
@@ -234,6 +249,13 @@ export default {
     this.$nextTick(() => {
       this.updateStyle();
     });
+    // check autocomplete prop for object, if so enable vuex-based auto-complete
+    if (this.autocomplete &&
+        typeof(this.autocomplete) !== 'boolean' &&
+        this.autocomplete.key &&
+        this.autocomplete.getter) { // .action is optional
+      this.vuexAutocomplete = true;
+    }
   },
   methods: {
     updateStyle() {
@@ -275,13 +297,16 @@ export default {
         });
       }
     },
+    updateValueWrapper(e) {
+      this.updateValue(e.target.value);
+    },
     // fine-grained update, called with every keystroke so parent
     // can update value prop according to v-model convention, this also
     // updates the local buffer for standalone operation
-    updateValue(e) {
-      this.$emit('input', e.target.value);
+    updateValue(v) {
+      this.$emit('input', v);
       // always update local input buffer
-      this.inputBuffer = e.target.value;
+      this.inputBuffer = v;
     },
     // keyup passthrough to allow 'keyup.enter'-type binding
     onKeyUp(e) {
@@ -291,7 +316,7 @@ export default {
     onFocus(e) {
       // don't focus if readonly
       if (this.readonly) return;
-      if (this.$scopedSlots.dropdown) {
+      if (this.$scopedSlots.dropdown || this.vuexAutocompletes.length > 0) {
         this.showDropdown = true;
       }
       this.focused = true;
@@ -304,9 +329,16 @@ export default {
         this.focused = false;
       }
       this.checkPlaceholder();
+      // save value as autocomplete if action is set
+      if (this.vuexAutocomplete && this.autocomplete.action) {
+        this.$store.dispatch(this.autocomplete.action, {
+          key: this.autocomplete.key,
+          value: this.value
+        });
+      }
     },
     closeDropdown() {
-      if (this.$scopedSlots.dropdown) {
+      if (this.$scopedSlots.dropdown || this.vuexAutocomplete) {
         this.showDropdown = false;
         this.focused = false;
       }
