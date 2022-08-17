@@ -58,6 +58,7 @@
                                     stretch clearable
                                     auto-focus
                                     :value="item"
+                                    :autocomplete="p.autocomplete"
                                     @input="setArrayItem(p, idx, ...arguments)">
                 </vuestro-text-field>
                 <vuestro-button round no-border
