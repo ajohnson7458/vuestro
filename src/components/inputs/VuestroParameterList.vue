@@ -67,7 +67,7 @@
                 </vuestro-button>
               </div>
             </vuestro-container>
-            <vuestro-button size="sm" round no-border
+            <vuestro-button size="sm" value pill
                             @click="onAddNewArrayItem(p)">
               <vuestro-icon name="plus"></vuestro-icon>
             </vuestro-button>
