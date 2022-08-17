@@ -47,6 +47,7 @@ export default {
           type: 'string',
           icon: 'server',
           default: 'default-host',
+          autocomplete: { key: 'test', getter: 'testAutocomplete' },
         },
         {
           title: 'Port',

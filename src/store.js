@@ -112,6 +112,9 @@ export default new Vuex.Store({
 
       return getDir(state.fileTree, path.split('/').slice(1));
     },
+    testAutocomplete: (state) => (key) => { // ignore key for test
+      return ['autocomplete 1', 'autocomplete 2'];
+    },
   },
   actions: {
     toggleIsDarkUI({ commit }) {

@@ -55,7 +55,7 @@
               <div class="vuestro-parameter-list-array-item"
                    v-for="(item, idx) in getValueOrSetDefault(p)" :key="idx">
                 <vuestro-text-field variant="shaded"
-                                    stretch
+                                    stretch clearable
                                     auto-focus
                                     :value="item"
                                     @input="setArrayItem(p, idx, ...arguments)">
@@ -129,11 +129,12 @@
         </vuestro-editor>
         <!--STRING/DEFAULT-->
         <vuestro-text-field v-else
-                            stretch
+                            stretch clearable
                             size="md"
                             :readonly="readonly"
                             :validate="(v) => validate(p.type, v)"
                             :value="getValueOrSetDefault(p)"
+                            :autocomplete="p.autocomplete"
                             @input="setField(p, ...arguments)">
         </vuestro-text-field>
       </vuestro-container>
@@ -165,6 +166,7 @@ export default {
     //    default: 'default value',
     //    collapsible: true|false,
     //    collapsed: true/false,
+    //    autocomplete: {}, // prop passed to vuestro-text-fields to enable autocomplete
     //  }
   },
   data() {
