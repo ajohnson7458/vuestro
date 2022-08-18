@@ -298,6 +298,7 @@ export default {
   margin-right: 0.5em;
   font-size: var(--vuestro-parameter-list-type-font-size);
   font-weight: var(--vuestro-parameter-list-type-font-weight);
+  color: var(--vuestro-text-color-light);
 }
 .vuestro-parameter-list-body {
   background-color: var(--vuestro-panel-bg);
