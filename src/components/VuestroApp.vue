@@ -211,8 +211,8 @@ export default {
   --vuestro-text-color-secondary: #696969;
   --vuestro-text-color-muted: #777;
   --vuestro-text-color-inverse: #eee; /* inverse text, changes with theme */
+  --vuestro-text-color-light: #fff; /* meant for always light text */
   --vuestro-text-color-dark: #323334; /* meant for always dark text */
-  --vuestro-text-color-light: #ddd; /* meant for always light text */
 }
 
 /* DARK UI OVERRIDES */
@@ -286,6 +286,8 @@ export default {
   --vuestro-text-color-secondary: #696969;
   --vuestro-text-color-muted: #aaa;
   --vuestro-text-color-inverse: #323334; /* inverse text, changes with theme */
+  --vuestro-text-color-light: #ddd; /* meant for always light text */
+  --vuestro-text-color-dark: #323334; /* meant for always dark text */
 }
 
 .vuestro-app.mobile {

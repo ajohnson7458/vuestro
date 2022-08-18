@@ -286,6 +286,7 @@ export default {
   display: flex;
   font-size: var(--vuestro-parameter-list-title-font-size);
   font-weight: var(--vuestro-parameter-list-title-font-weight);
+  color: var(--vuestro-text-color-light);
 }
 .vuestro-parameter-list-name > .vuestro-icon {
   margin-left: 0.1em;
