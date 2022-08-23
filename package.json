@@ -21,6 +21,7 @@
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
     "lodash": "^4.17.21",
+    "marked": "^4.0.19",
     "moment": "^2.27.0",
     "vue-awesome": "^4.5.0",
     "vuedraggable": "^2.24.1"

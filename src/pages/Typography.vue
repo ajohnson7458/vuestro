@@ -50,6 +50,16 @@
     </vuestro-card>
 
     <vuestro-card>
+      <template #subheading>Markdown</template>
+      <template #description>
+        <span>Render markdown provided as a property</span>
+      </template>
+      <vuestro-container>
+        <vuestro-markdown :value="markdownText"></vuestro-markdown>
+      </vuestro-container>
+    </vuestro-card>
+
+    <vuestro-card>
       <template #subheading>Search Term Highlighting</template>
       <template #description>
         <span>VuestroSearchHighlight handles rendering a string with a search term highlight</span>
@@ -88,6 +98,12 @@ export default {
   data() {
     return {
       asyncText: null,
+      markdownText: `
+# Title
+## SubTitle
+
+Body Text
+`,
       icons: [
         'adjust',
         'brands/android',
