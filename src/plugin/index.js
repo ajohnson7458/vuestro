@@ -141,7 +141,7 @@ export default {
           // short prepositions
           'as', 'at', 'by', 'in', 'of', 'off', 'on', 'per', 'to', 'up', 'via',
           // Apple words
-          'iOS', 'macOS', 'iCloud',
+          'iOS', 'macOS', 'iCloud', 'KVPs'
         ];
         if (idx === 0 || exceptions.indexOf(word) < 0) {
           let hyphenated = word.split('-');

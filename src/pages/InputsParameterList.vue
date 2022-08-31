@@ -83,6 +83,28 @@ export default {
           default: ['one', 'two', 'three'],
         },
         {
+          title: 'Variables',
+          description: 'Example of key value pair variables',
+          field: 'kvps',
+          type: 'variables',
+          collapsible: true,
+          collapsed: true,
+          default: [
+            {
+              key: 'one',
+              value: '1',
+            },
+            {
+              key: 'two',
+              value: '2',
+            },
+            {
+              key: 'three',
+              value: '3',
+            },
+          ],
+        },
+        {
           title: 'Start Date',
           description: 'Example of single date selection',
           field: 'date',

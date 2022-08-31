@@ -33,7 +33,7 @@
         </div>
       </vuestro-container>
       <!--BODY/CONTENT-->
-      <vuestro-container v-if="!isCollapsed(p)"
+      <vuestro-container v-show="!isCollapsed(p)"
                          class="vuestro-parameter-list-body"
                          column
                          gutter="sm"
@@ -47,6 +47,35 @@
                                   @input="setField(p, ...arguments)">
           </vuestro-parameter-list>
         </template>
+        <!--Variables-->
+        <template v-else-if="p.type === 'variables'">
+          <vuestro-container column content="stretch" gutter="none">
+            <div class="vuestro-parameter-list-array-item"
+                 v-for="(item, idx) in getValueOrSetDefault(p)" :key="idx">
+              <vuestro-text-field variant="shaded"
+                                  clearable auto-focus
+                                  :value="item.key"
+                                  :autocomplete="p.autocomplete"
+                                  @input="setArrayItem(p, idx, 'key', ...arguments)">
+              </vuestro-text-field>&nbsp;:&nbsp;
+              <vuestro-text-field variant="shaded"
+                                  clearable stretch
+                                  :value="item.value"
+                                  :autocomplete="p.autocomplete"
+                                  @input="setArrayItem(p, idx, 'value', ...arguments)">
+              </vuestro-text-field>
+              <vuestro-button round no-border
+                              variant="danger" size="sm"
+                              @click="removeArrayItem(p, idx)">
+                <vuestro-icon name="trash"></vuestro-icon>
+              </vuestro-button>
+            </div>
+          </vuestro-container>
+          <vuestro-button size="sm" value pill
+                          @click="onAddNewArrayItem(p, { key: '', value: '' })">
+            <vuestro-icon name="plus"></vuestro-icon>
+          </vuestro-button>
+        </template>
         <!--ARRAY-->
         <vuestro-container v-else-if="p.type === 'array'"
                            column content="stretch" gutter="none">
@@ -59,7 +88,7 @@
                                     auto-focus
                                     :value="item"
                                     :autocomplete="p.autocomplete"
-                                    @input="setArrayItem(p, idx, ...arguments)">
+                                    @input="setArrayItem(p, idx, null, ...arguments)">
                 </vuestro-text-field>
                 <vuestro-button round no-border
                                 variant="danger" size="sm"
@@ -69,7 +98,7 @@
               </div>
             </vuestro-container>
             <vuestro-button size="sm" value pill
-                            @click="onAddNewArrayItem(p)">
+                            @click="onAddNewArrayItem(p, '')">
               <vuestro-icon name="plus"></vuestro-icon>
             </vuestro-button>
           </template>
@@ -160,7 +189,7 @@ export default {
     //    title: '<the UI-friendly name>',
     //    description: '<the UI-friendly description>',
     //    field: '<the actual field name set in value object>',
-    //    type: 'string|number|option|boolean|array|object',
+    //    type: 'string|number|option|boolean|array|object|variables',
     //    icon: 'font awesome icon string',
     //    options: ['<array of strings, only for option type>'],
     //    items: ['calls out items for array or object, object items should be a nested parameter list'],
@@ -209,17 +238,21 @@ export default {
       this.$emit('input', newVal);
       callback && callback();
     },
-    onAddNewArrayItem(param) {
+    onAddNewArrayItem(param, initial) {
       let newVal = _.cloneDeep(this.value);
       if (!_.isArray(newVal[param.field])) {
         newVal[param.field] = [];
       }
-      newVal[param.field].push('');
+      newVal[param.field].push(initial);
       this.$emit('input', newVal);
     },
-    setArrayItem(param, idx, value) {
+    setArrayItem(param, idx, key, value) {
       let newVal = _.cloneDeep(this.value);
-      newVal[param.field][idx] = value;
+      if (key) {
+        newVal[param.field][idx][key] = value;
+      } else {
+        newVal[param.field][idx] = value;
+      }
       this.$emit('input', newVal);
     },
     removeArrayItem(param, idx) {
@@ -270,7 +303,7 @@ export default {
   --vuestro-parameter-list-title-padding: 0.2em 0.4em;
   --vuestro-parameter-list-type-font-size: 0.8em;
   --vuestro-parameter-list-type-font-weight: 500;
-  --vuestro-parameter-list-description-font-size: 0.9em;
+  --vuestro-parameter-list-description-font-size: 0.95em;
 }
 
 </style>
