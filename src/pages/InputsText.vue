@@ -32,7 +32,11 @@
           <vuestro-text-field variant="shaded" placeholder="Shaded sm size" size="sm" v-model="exampleText"></vuestro-text-field>
           <vuestro-text-field variant="shaded" placeholder="Shaded default size" v-model="exampleText"></vuestro-text-field>
           <vuestro-text-field variant="shaded" placeholder="Shaded lg size" size="lg" v-model="exampleText"></vuestro-text-field>
-          <vuestro-text-field variant="shaded" placeholder="Shaded xl size" size="xl" v-model="exampleText"></vuestro-text-field>
+          <vuestro-text-field variant="shaded" placeholder="Shaded xl size" size="xl" v-model="exampleText">
+            <template #dropdown>
+              <vuestro-list-button v-for="d in filteredDatasetWithIds" :key="d.id" @click="onSelect(d)">{{ d.val }}</vuestro-list-button>
+            </template>
+          </vuestro-text-field>
         </vuestro-card>
         <vuestro-card cols="3">
           <vuestro-text-field variant="search" placeholder="Search sm size" size="sm" v-model="exampleText"></vuestro-text-field>
@@ -249,7 +253,7 @@ export default {
       return _.isFinite(_.toNumber(str)) || 'should be number';
     },
     isEmail(str) {
-      return str.match(/\w+@\w+.\w+/) || 'should be valid email';
+      return str.match(/\w+@\w+.\w+/) || 'please enter a valid email';
     },
     onSelect(d) {
       this.selectedId = d.id;

@@ -55,13 +55,13 @@
               <vuestro-text-field variant="shaded"
                                   clearable auto-focus
                                   :value="item.key"
-                                  :autocomplete="p.autocomplete"
                                   @input="setArrayItem(p, idx, 'key', ...arguments)">
               </vuestro-text-field>&nbsp;:&nbsp;
               <vuestro-text-field variant="shaded"
                                   clearable stretch
                                   :value="item.value"
                                   :autocomplete="p.autocomplete"
+                                  :type="p.inputType"
                                   @input="setArrayItem(p, idx, 'value', ...arguments)">
               </vuestro-text-field>
               <vuestro-button round no-border
@@ -88,6 +88,7 @@
                                     auto-focus
                                     :value="item"
                                     :autocomplete="p.autocomplete"
+                                    :type="p.inputType"
                                     @input="setArrayItem(p, idx, null, ...arguments)">
                 </vuestro-text-field>
                 <vuestro-button round no-border
@@ -165,6 +166,7 @@
                             :validate="(v) => validate(p.type, v)"
                             :value="getValueOrSetDefault(p)"
                             :autocomplete="p.autocomplete"
+                            :type="p.inputType"
                             @input="setField(p, ...arguments)">
         </vuestro-text-field>
       </vuestro-container>
@@ -196,7 +198,8 @@ export default {
     //    default: 'default value',
     //    collapsible: true|false,
     //    collapsed: true/false,
-    //    autocomplete: {}, // prop passed to vuestro-text-fields to enable autocomplete
+    //    autocomplete: {},  // prop passed to vuestro-text-fields to enable autocomplete
+    //    inputType: 'text', // prop passed to vuestro-text-fields to set input type
     //  }
   },
   data() {

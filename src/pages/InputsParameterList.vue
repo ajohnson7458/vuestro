@@ -55,6 +55,7 @@ export default {
           field: 'port',
           type: 'number',
           default: 80,
+          autocomplete: { key: 'test', getter: 'testAutocomplete' },
         },
         {
           title: 'Protocol',
@@ -63,6 +64,13 @@ export default {
           type: 'option',
           options: ['tcp', 'http', 'https', 0],
           // default: 'tcp',
+        },
+        {
+          title: 'Token',
+          description: 'Example of password type field',
+          field: 'token',
+          type: 'string',
+          inputType: 'password',
         },
         {
           title: 'Enabled',

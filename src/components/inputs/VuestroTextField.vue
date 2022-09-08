@@ -53,7 +53,7 @@
              class="vuestro-text-field-input-el"
              :value="inputBuffer"
              :type="showPassword ? 'text':type"
-             :autocomplete="autocomplete"
+             :autocomplete="vuexAutocomplete ? false:autocomplete"
              :spellcheck="spellcheck"
              :placeholder="inputPlaceholder"
              :readonly="readonly"
@@ -79,7 +79,12 @@
         <vuestro-icon name="times"></vuestro-icon>
       </vuestro-button>
       <!--VALIDATION-->
-      <div v-if="invalid" class="vuestro-text-field-invalid-msg">{{ invalid }}</div>
+      <div v-if="invalid" class="vuestro-text-field-invalid-msg">
+        <vuestro-label>{{ invalid }}</vuestro-label>
+        <vuestro-button size="sm" round no-border no-margin variant="text" @click.stop="onClear">
+          <vuestro-icon name="times"></vuestro-icon>
+        </vuestro-button>
+      </div>
       <!--EDITING BUTTONS-->
       <div v-else-if="editingButtons" class="vuestro-text-field-editing-buttons">
         <vuestro-button v-if="!invalid" class="vuestro-text-field-button"
@@ -135,7 +140,7 @@ export default {
     value: { type: null, default: '' },               // initial value, or bind with v-model, not required for standalone mode
     placeholder: { type: String, default: null },     // custom placeholder, doesn't use input el standard placeholder
     variant: { type: String, default: 'regular' },    // regular, outline, shaded, search
-    type: { type: String, default: 'text' },          // standard input el type string
+    type: { type: String, default: 'text' },          // standard input el type string, e.g. password, email
     hint: { type: String, default: null },            // uses input el placeholder to provide additional hint, only shown when focused
     center: { type: Boolean, default: false },        // set true to center text
     noMargin: { type: Boolean, default: false },      // disable standard vuestro control margins
@@ -550,8 +555,11 @@ export default {
   padding-left: 2px;
   padding-right: 5px;
   border-top-right-radius: var(--vuestro-control-border-radius);
+}
+.vuestro-text-field-outline .vuestro-text-field-invalid-msg {
   border-bottom-right-radius: var(--vuestro-control-border-radius);
 }
+
 /* render the left-pointing angle on the invalid msg */
 .vuestro-text-field-invalid-msg:before {
   content: '';
@@ -571,12 +579,12 @@ export default {
   color: var(--vuestro-dropdown-content-fg);
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.5);
   position: absolute;
-  top: calc(100% + 0.4em);
+  top: calc(100% + 1px);
   left: 0;
   right: 0;
   overflow: auto;
   max-height: 90vh;
-  border: var(--vuestro-control-border-width) solid var(--vuestro-dropdown-outline);
+  border: var(--vuestro-control-border-width) solid var(--vuestro-primary);
   border-radius: var(--vuestro-control-border-radius);
   z-index: 999;
   padding: 0.4em;
