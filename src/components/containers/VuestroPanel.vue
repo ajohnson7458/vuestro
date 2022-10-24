@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     hasTitlebar() {
-      return this.$scopedSlots.title || this.$scopedSlots.toolbar || this.collapsible;
+      return !!(this.$scopedSlots.title || this.$scopedSlots.toolbar || this.collapsible);
     },
     hasContent() {
       return this.$slots.default;

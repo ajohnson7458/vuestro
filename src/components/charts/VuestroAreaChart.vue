@@ -1,7 +1,7 @@
 <template>
   <div class="vuestro-area-chart" :class="{ showGrid }"
-       @mouseleave="onMouseleave" :style="style">
-    <slot></slot>
+       @mouseleave="onMouseleave" :style="style"><!--HIDE TOOLTIP ON MOUSE LEAVE-->
+    <slot></slot><!--SLOT FOR EXTRAS-->
     <div class="vuestro-area-chart-inner">
       <svg :width="width"
            :height="height"
@@ -51,7 +51,7 @@
         </template>
       </svg>
       <!--ONLY SHOW IF TOOLTIP NOT SHOWN-->
-      <vuestro-title v-if="cursorLine.length === 0">
+      <vuestro-title v-show="cursorLine.length === 0">
         <slot name="title"></slot>
       </vuestro-title>
     </div>
@@ -324,6 +324,7 @@ export default {
           }
         }
       }
+      this.$forceUpdate();
     },
     onMouseover({ offsetX }) {
       if (!this.inTransition && this.localData.length > 0) {
@@ -365,9 +366,8 @@ export default {
         let newD = vnode.context[binding.arg](binding.value);
 
         let data = vnode.context.localData;
-        if (vnode.context.slide &&
-            data[data.length-1] &&
-            data[data.length-2]) {
+        // for slide mode, add a transform to slide the chart over for the new points
+        if (vnode.context.slide && data.length >= 2) {
           let scale = vnode.context.scale.x.scale();
           let catKey = vnode.context.categoryField;
           el.dataset.shift = scale(data[data.length-1][catKey]) - scale(data[data.length-2][catKey]);
@@ -380,8 +380,8 @@ export default {
             .transition().delay(vnode.context.transition)
             .attr('transform', null);
         } else {
+          vnode.context.inTransition = true;
           if (el.dataset.oldD == '') {
-            vnode.context.inTransition = true;
             d3.select(el)
               .attr('d', vnode.context[binding.arg](binding.value, true))
               .transition().duration(vnode.context.transition)
@@ -390,9 +390,9 @@ export default {
           } else {
             // standard path update, triggered by tooltip
             d3.select(el)
-            .transition().duration(vnode.context.transition)
-            .attr('d', newD)
-            .on('end', () => { vnode.context.inTransition = false; });
+              .transition().duration(vnode.context.transition)
+              .attr('d', newD)
+              .on('end', () => { vnode.context.inTransition = false; });
           }
           el.dataset.oldD = newD;
         }

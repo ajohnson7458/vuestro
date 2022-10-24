@@ -239,6 +239,7 @@ export default {
           }
         }
       }
+      this.$forceUpdate();
     },
     onMouseover({ offsetX }) {
       if (this.localData.length > 0) {

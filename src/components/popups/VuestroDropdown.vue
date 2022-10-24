@@ -15,7 +15,7 @@
       </div>
       <!--BUTTON SLOT (vuestro-button wired up automatically)-->
       <div class="vuestro-dropdown-button" v-else-if="$scopedSlots.button">
-        <slot name="button"></slot>
+        <slot name="button" :toggle="onClick"></slot>
       </div>
       <!--THE DROPDOWN PART-->
       <div ref="dropdown"

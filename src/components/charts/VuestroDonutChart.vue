@@ -194,6 +194,7 @@ export default {
           this.arcLabels(arcData, di, this.maxRadius * this.donutRadius / 100.0, d3.arc());
         }
       }
+      this.$forceUpdate();
     },
     onMouseenter(idx, e) {
       this.toolTipLocationX = e.offsetX;

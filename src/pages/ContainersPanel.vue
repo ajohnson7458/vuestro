@@ -155,19 +155,6 @@
     </vuestro-card>
 
     <vuestro-card cols="6">
-      <vuestro-panel geopattern>
-        <template #title>Vuestro Panel with geopattern set</template>
-        <vuestro-container>
-          <vuestro-card>
-            <template #description>
-              <span>Set the <vuestro-code>geopattern</vuestro-code> property</span>
-            </template>
-          </vuestro-card>
-        </vuestro-container>
-      </vuestro-panel>
-    </vuestro-card>
-
-    <vuestro-card cols="6">
       <vuestro-panel>
         <template #icon>
           <vuestro-icon name="drafting-compass"></vuestro-icon>

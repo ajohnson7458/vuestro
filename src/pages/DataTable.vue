@@ -48,7 +48,7 @@
       <vuestro-panel>
         <vuestro-table :options="{ ...exampleOptions, scroll: true }" :data="exampleData">
           <template #row="{ item }">
-            <td>{{ item }}</td>
+            <td style="width: 10%">{{ item }}</td>
             <td>{{ item }}</td>
             <td>{{ item }}</td>
             <td>{{ item }}</td>
