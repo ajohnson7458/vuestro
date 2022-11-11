@@ -233,6 +233,10 @@ export default {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+.vuestro-pill.badge:not(.vuestro-pill-title-only) .vuestro-pill-title {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .vuestro-pill.inverted .vuestro-pill-title {
   color: var(--vuestro-pill-value-fg);
   background-image: none;

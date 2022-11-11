@@ -102,7 +102,7 @@
         </vuestro-pill>
         <vuestro-pill>
           <template #icon>
-            <vuestro-icon name="tractor" scale="0.8"></vuestro-icon>
+            <vuestro-icon name="tractor"></vuestro-icon>
           </template>
           <template #title>Tractor</template>
           <template #title-buttons>
@@ -123,7 +123,7 @@
       </template>
       <vuestro-container>
         <vuestro-pill>
-          <template #title>33</template>
+          <template #title>33°</template>
           <template #value>Fan</template>
           <template #value-buttons>
             <vuestro-button round no-border>
@@ -133,7 +133,7 @@
         </vuestro-pill>
         <vuestro-pill>
           <template #icon>
-            <vuestro-icon name="tractor" scale="0.8"></vuestro-icon>
+            <vuestro-icon name="tractor"></vuestro-icon>
           </template>
           <template #title>Tractor</template>
           <template #value-buttons>

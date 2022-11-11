@@ -10,7 +10,7 @@
       <slot></slot>
     </span>
     <span class="vuestro-title-spinner">
-      <vuestro-icon scale="0.7" name="spinner" pulse v-if="spinner"></vuestro-icon>
+      <vuestro-icon name="spinner" pulse v-if="spinner"></vuestro-icon>
     </span>
   </div>
 </template>

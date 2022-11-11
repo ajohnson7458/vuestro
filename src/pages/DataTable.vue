@@ -74,8 +74,7 @@
       <vuestro-panel>
         <vuestro-table :options="exampleOptions2" :data="[]">
           <template #no-data>
-            <vuestro-icon name="ghost" scale=2></vuestro-icon>
-            No data to show
+            <vuestro-no-data>No data to show</vuestro-no-data>
           </template>
         </vuestro-table>
       </vuestro-panel>
@@ -127,18 +126,18 @@
       <vuestro-panel>
         <vuestro-table :options="exampleOptions2" :data="exampleData">
           <template #header-buttons>
-            <vuestro-button round no-border>
+            <vuestro-button round no-border size="sm">
               <vuestro-icon name="plus"></vuestro-icon>
             </vuestro-button>
           </template>
           <template #row-buttons="{ index }">
-            <vuestro-button round no-border>
+            <vuestro-button round no-border size="sm">
               <vuestro-icon name="eye"></vuestro-icon>
             </vuestro-button>
-            <vuestro-button round no-border>
+            <vuestro-button round no-border size="sm">
               <vuestro-icon name="edit"></vuestro-icon>
             </vuestro-button>
-            <vuestro-confirm></vuestro-confirm>
+            <vuestro-confirm size="sm"></vuestro-confirm>
           </template>
         </vuestro-table>
       </vuestro-panel>
@@ -154,13 +153,13 @@
                        :data="exampleData"
                        @row-click="onRowClick">
           <template #header-buttons>
-            <vuestro-button pill no-border @click="$refs.tableWithDetail.expandAll()">
+            <vuestro-button pill no-border size="sm" @click="$refs.tableWithDetail.expandAll()">
               <template #icon>
                 <vuestro-icon name="expand-alt"></vuestro-icon>
               </template>
               Expand All
             </vuestro-button>
-            <vuestro-button pill no-border @click="$refs.tableWithDetail.collapseAll()">
+            <vuestro-button pill no-border size="sm" @click="$refs.tableWithDetail.collapseAll()">
               <template #icon>
                 <vuestro-icon name="compress-alt"></vuestro-icon>
               </template>
@@ -168,13 +167,13 @@
             </vuestro-button>
           </template>
           <template #row-buttons="{ index }">
-            <vuestro-button round no-border @click.stop="onViewClick">
+            <vuestro-button round no-border @click.stop="onViewClick" size="sm">
               <vuestro-icon name="eye"></vuestro-icon>
             </vuestro-button>
-            <vuestro-button round no-border>
+            <vuestro-button round no-border size="sm">
               <vuestro-icon name="edit"></vuestro-icon>
             </vuestro-button>
-            <vuestro-confirm></vuestro-confirm>
+            <vuestro-confirm size="sm"></vuestro-confirm>
           </template>
           <template #detail="{ item }">
             <vuestro-container>

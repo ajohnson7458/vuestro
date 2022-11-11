@@ -71,7 +71,7 @@
               <component v-else-if="column.component" :is="column.component" v-model="row[column.field]"></component>
               <template v-else>
                 <template v-if="column.async && getField(row, column.field) == null">
-                  <vuestro-icon scale="0.7" name="spinner" pulse></vuestro-icon>
+                  <vuestro-icon scale="-4" name="spinner" pulse></vuestro-icon>
                 </template>
                 <template v-else>
                   {{ getField(row, column.field) | cellFilterProxy(column.render, row) }}

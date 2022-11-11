@@ -205,17 +205,8 @@
 
 <script>
 
-import Icon from 'vue-awesome/components/Icon';
-
 export default {
   name: 'ContainersPanel',
-  components: {
-    Icon,
-  },
-  data() {
-    return {
-    };
-  },
 };
 
 </script>

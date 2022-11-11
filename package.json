@@ -13,6 +13,10 @@
     "build-pages": "webpack --config ./build/webpack.pages.config.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^2.0.9",
     "@geoman-io/leaflet-geoman-free": "^2.7.0",
     "brace": "^0.11.1",
     "d3": "^5.16.0",
@@ -23,7 +27,6 @@
     "lodash": "^4.17.21",
     "marked": "^4.0.19",
     "moment": "^2.27.0",
-    "vue-awesome": "^4.5.0",
     "vuedraggable": "^2.24.1"
   },
   "devDependencies": {

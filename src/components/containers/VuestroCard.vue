@@ -40,6 +40,7 @@ export default {
     row: { type: Boolean, default: false },
     gutter: { type: String, default: '' },
     scroll: { type: Boolean, default: false },
+    
   },
   computed: {
     colorBarStyle() {

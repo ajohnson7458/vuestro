@@ -29,10 +29,10 @@
           <div class="vuestro-modal-toolbar-buttons">
             <slot name="toolbar"></slot>
             <template v-if="closeText.length > 0">
-              <vuestro-button pill no-border class="close-button" @click="onClose">{{ closeText }}</vuestro-button>
+              <vuestro-button pill no-border class="close-button" @click.stop="onClose">{{ closeText }}</vuestro-button>
             </template>
             <template v-else>
-              <vuestro-button round no-border class="close-button" @click="onClose">
+              <vuestro-button round no-border class="close-button" @click.stop="onClose">
                 <vuestro-icon name="times"></vuestro-icon>
               </vuestro-button>
             </template>

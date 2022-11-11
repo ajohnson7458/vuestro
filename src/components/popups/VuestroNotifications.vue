@@ -5,12 +5,7 @@
       <template #title>
         <div class="vuestro-notifications-icon">
           <vuestro-icon v-if="muted" name="bell-slash"></vuestro-icon>
-          <vuestro-icon v-else name="bell">
-            <div v-if="unread.length > 0" class="vuestro-notifications-icon-count">
-              <vuestro-pill color="var(--vuestro-info)" size="sm" no-margin>
-                <template #title>{{ unread.length }}</template>
-              </vuestro-pill>
-            </div>
+          <vuestro-icon v-else name="bell" counter :value="unread.length">
           </vuestro-icon>
         </div>
       </template>
@@ -25,7 +20,7 @@
               <vuestro-container gutter="none" column>
                 <div class="vuestro-notification-item-title">
                   {{ latest.title }}
-                  <vuestro-icon v-if="latest.path" scale="0.8" name="share"></vuestro-icon>
+                  <vuestro-icon v-if="latest.path" name="share"></vuestro-icon>
                 </div>
                 <div class="vuestro-notification-item-desc">{{ latest.description }}</div>
               </vuestro-container>
@@ -88,7 +83,7 @@
               <vuestro-container gutter="none" column>
                 <div class="vuestro-notification-item-title">
                   {{ item.title }}
-                  <vuestro-icon v-if="item.path" scale="0.8" name="share"></vuestro-icon>
+                  <vuestro-icon v-if="item.path" name="share"></vuestro-icon>
                 </div>
                 <div class="vuestro-notification-item-desc">{{ item.description }}</div>
               </vuestro-container>

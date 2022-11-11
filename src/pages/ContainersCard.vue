@@ -48,13 +48,8 @@
 
 <script>
 
-import Icon from 'vue-awesome/components/Icon';
-
 export default {
   name: 'ContainersCard',
-  components: {
-    Icon,
-  },
   data() {
     return {
       outlines: true,

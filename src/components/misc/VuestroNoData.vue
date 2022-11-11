@@ -1,6 +1,6 @@
 <template>
   <div class="vuestro-no-data" :class="{ noMargin }">
-    <vuestro-icon name="ghost" scale=1.6></vuestro-icon>
+    <vuestro-icon name="ghost" scale="10"></vuestro-icon>
     <slot></slot>
   </div>
 </template>

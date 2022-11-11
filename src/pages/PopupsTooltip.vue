@@ -144,13 +144,8 @@
 
 <script>
 
-import Icon from 'vue-awesome/components/Icon';
-
 export default {
   name: 'Popups',
-  components: {
-    Icon,
-  },
   data() {
     return {
       modalOpen1: false,

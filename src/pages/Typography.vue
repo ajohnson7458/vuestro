@@ -79,11 +79,62 @@
     <vuestro-card>
       <template #subheading>Icons</template>
       <template #description>
-        Vuestro currently contains all the free FontAwesome icons. They are abstracted through the VuestroIcon component, but the names and most of the prop options are passed through.
+        Vuestro currently contains all the free FontAwesome icons. They are abstracted through the VuestroIcon component, but the names and some useful props are passed through.
       </template>
       <vuestro-container>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10"></vuestro-icon>
+          <div>normal</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" flip="horizontal"></vuestro-icon>
+          <div>flip="horizontal"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" flip="vertical"></vuestro-icon>
+          <div>flip="vertical"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" flip="both"></vuestro-icon>
+          <div>flip="both"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" rotation="90"></vuestro-icon>
+          <div>rotation="90"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" rotation="270"></vuestro-icon>
+          <div>rotation="270"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" spin></vuestro-icon>
+          <div>spin</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" bounce></vuestro-icon>
+          <div>bounce</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" beat></vuestro-icon>
+          <div>beat</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" fade></vuestro-icon>
+          <div>fade</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" shake></vuestro-icon>
+          <div>shake</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" scale="10" inverse></vuestro-icon>
+          <div>inverse</div>
+        </vuestro-card>
+        <vuestro-card>
+          <vuestro-hr></vuestro-hr>
+        </vuestro-card>
         <vuestro-card cols="1" class="icon-tile" v-for="i in icons" :key="i">
-          <vuestro-icon :name="i" scale="2"></vuestro-icon>
+          <vuestro-icon :name="i" scale="10"></vuestro-icon>
           <div>{{ i }}</div>
         </vuestro-card>
       </vuestro-container>
@@ -106,15 +157,15 @@ Body Text
 `,
       icons: [
         'adjust',
-        'brands/android',
-        'brands/app-store-ios',
-        'brands/apple',
+        'fa-brands fa-android',
+        'fa-brands fa-app-store-ios',
+        'fa-brands fa-apple',
         'archive',
         'archway',
         'at',
         'asterisk',
         'atlas',
-        'brands/aws',
+        'fa-brands fa-aws',
         'balance-scale',
         'ban',
         'band-aid',
@@ -124,8 +175,8 @@ Body Text
         'bell',
         'bell-slash',
         'binoculars',
-        'brands/bitcoin',
-        'brands/bluetooth',
+        'fa-brands fa-bitcoin',
+        'fa-brands fa-bluetooth',
         'bolt',
         'bomb',
         'book',
@@ -155,7 +206,7 @@ Body Text
         'check',
         'check-square',
         'chess-board',
-        'brands/chrome',
+        'fa-brands fa-chrome',
         'circle',
         'city',
         'clipboard',
@@ -181,7 +232,7 @@ Body Text
         'database',
         'desktop',
         'digital-tachograph',
-        'brands/docker',
+        'fa-brands fa-docker',
         'dot-circle',
         'download',
         'edit',
@@ -195,15 +246,15 @@ Body Text
         'external-link-square-alt',
         'eye',
         'eye-slash',
-        'brands/facebook-square',
+        'fa-brands fa-facebook-square',
         'file',
         'filter',
         'flag',
         'folder',
         'folder-open',
-        'brands/gitlab',
+        'fa-brands fa-gitlab',
         'globe-americas',
-        'brands/google',
+        'fa-brands fa-google',
         'hammer',
         'hashtag',
         'hdd',
@@ -237,7 +288,7 @@ Body Text
         'question-circle',
         'robot',
         'rocket',
-        'brands/safari',
+        'fa-brands fa-safari',
         'save',
         'scroll',
         'search',

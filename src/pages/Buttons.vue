@@ -24,6 +24,9 @@
         <vuestro-button @click="onClick">
           <vuestro-icon name="flag"></vuestro-icon>
         </vuestro-button>
+        <vuestro-button @click="onClick">
+          <vuestro-icon name="spinner" pulse></vuestro-icon>
+        </vuestro-button>
       </div>
     </vuestro-card>
 
@@ -395,9 +398,9 @@
 
     <vuestro-card>
       <template #subheading>VuestroUserButton</template>
-      <template #description>A user tile</template>
+      <template #description>A user tile with clickable avatar</template>
       <vuestro-container>
-        <vuestro-user-button user="Test User" role="User Role">
+        <vuestro-user-button user="Test User" role="User Role" @click="onClick">
           Provides a slot for user info
         </vuestro-user-button>
       </vuestro-container>
@@ -408,13 +411,8 @@
 
 <script>
 
-import Icon from 'vue-awesome/components/Icon';
-
 export default {
   name: 'Buttons',
-  components: {
-    Icon,
-  },
   data() {
     return {
       exampleCheckbox: true,
