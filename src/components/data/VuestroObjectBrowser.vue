@@ -30,12 +30,12 @@
           </template>
           <template v-else>
             <!--TYPE-DEPENDENT RENDERING-->
-            <span v-if="isString(v)" class="vuestro-object-browser-item-string" title="String">{{ JSON.stringify(v) }}</span>
-            <span v-if="isBoolean(v)" class="vuestro-object-browser-item-bool" title="Boolean">{{ v }}</span>
-            <span v-if="isDate(v)" class="vuestro-object-browser-item-date" title="Date">{{ v.toISOString() }}</span>
-            <span v-if="isNumber(v)" class="vuestro-object-browser-item-number" title="Number">{{ v }}</span>
-            <span v-if="isArray(v)">Array[{{ v.length }}]</span>
-            <span v-if="isObject(v)">Object[{{ Object.keys(v).length }}]</span>
+            <span v-if="showTypes && isString(v)" class="vuestro-object-browser-item-string" title="String">{{ JSON.stringify(v) }}</span>
+            <span v-if="showTypes && isBoolean(v)" class="vuestro-object-browser-item-bool" title="Boolean">{{ v }}</span>
+            <span v-if="showTypes && isDate(v)" class="vuestro-object-browser-item-date" title="Date">{{ v.toISOString() }}</span>
+            <span v-if="showTypes && isNumber(v)" class="vuestro-object-browser-item-number" title="Number">{{ v }}</span>
+            <span v-if="showTypes && isArray(v)">Array[{{ v.length }}]</span>
+            <span v-if="showTypes && isObject(v)">Object[{{ Object.keys(v).length }}]</span>
             <span v-if="v === null" class="vuestro-object-browser-item-null">null</span>
             <span v-if="v === undefined" class="vuestro-object-browser-item-null">undefined</span>
             <span v-if="isEditable(k, v)" class="vuestro-object-editing-buttons">
@@ -111,6 +111,7 @@ export default {
       addingMember: false,
       newMemberKey: '',
       newMemberVal: '',
+      showTypes: true,
     };
   },
   computed: {

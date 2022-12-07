@@ -138,6 +138,16 @@
       </div>
     </vuestro-card>
 
+    <vuestro-card cols="12">
+      <template #subheading>Built-in 2-click Confirm popup</template>
+      <div class="example-container">
+        <vuestro-confirm position="right" @confirm="onClick"></vuestro-confirm>
+        <vuestro-confirm position="bottom" @confirm="onClick"></vuestro-confirm>
+        <vuestro-confirm position="top" @confirm="onClick"></vuestro-confirm>
+        <vuestro-confirm position="left" @confirm="onClick"></vuestro-confirm>
+      </div>
+    </vuestro-card>
+
 
   </vuestro-container>
 </template>

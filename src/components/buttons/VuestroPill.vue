@@ -32,7 +32,7 @@
     <div v-if="!$slots.title && !$slots.icon"
          class="vuestro-pill-title"
          :class="{ autoCapital }">
-      {{ titleComputed }}
+      {{ titleComputed || '&#8203;' }}
     </div>
     <div v-if="$slots.title || $slots.icon"
          class="vuestro-pill-title">
@@ -117,7 +117,7 @@ export default {
           return v.trim().slice(0, 1).toUpperCase();
         }
       }
-      return '';
+      return null;
     },
     isValueButtons() {
       return this.$scopedSlots['value-buttons'] || this.$listeners.close;

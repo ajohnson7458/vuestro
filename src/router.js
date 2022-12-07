@@ -5,10 +5,11 @@ import Dashboard from './pages/Dashboard';
 import Charts from './pages/Charts';
 import ChartsAreaChart from './pages/ChartsAreaChart';
 import ChartsBarChart from './pages/ChartsBarChart';
-import ChartsMap from './pages/ChartsMap';
 import ChartsDonutChart from './pages/ChartsDonutChart';
-import ChartsSankey from './pages/ChartsSankey';
 import ChartsForceGraph from './pages/ChartsForceGraph';
+import ChartsMap from './pages/ChartsMap';
+import ChartsPillChart from './pages/ChartsPillChart';
+import ChartsSankey from './pages/ChartsSankey';
 import Buttons from './pages/Buttons';
 import Pickers from './pages/Pickers';
 import Pills from './pages/Pills';
@@ -45,8 +46,6 @@ import PluginMixins from './pages/PluginMixins';
 import PluginColors from './pages/PluginColors';
 import PluginFilters from './pages/PluginFilters';
 import InputsEditor from './pages/InputsEditor';
-import Navigation from './pages/Navigation';
-import NavigationSidebar from './pages/NavigationSidebar';
 import Example from './pages/Example';
 import ExampleForms from './pages/ExampleForms';
 import Settings from './pages/Settings';
@@ -203,6 +202,15 @@ export default new Router({
           name: 'bar-chart',
           path: 'bar-chart',
           component: ChartsBarChart,
+        },
+        {
+          meta: {
+            title: 'Pill Chart',
+            sidebar: true,
+          },
+          name: 'pill-chart',
+          path: 'pill-chart',
+          component: ChartsPillChart,
         },
         {
           meta: {
@@ -458,27 +466,6 @@ export default new Router({
       name: 'workflow',
       path: '/workflow',
       component: Workflow,
-    },
-    {
-      meta: {
-        title: 'Navigation',
-        sidebar: true,
-        icon: 'bars',
-      },
-      name: 'navigation',
-      path: '/navigation',
-      component: Navigation,
-      children: [
-        {
-          meta: {
-            title: 'Sidebar',
-            sidebar: true,
-          },
-          name: 'sidebar',
-          path: 'sidebar',
-          component: NavigationSidebar,
-        },
-      ],
     },
     {
       meta: {

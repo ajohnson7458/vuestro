@@ -159,7 +159,7 @@ export default {
   flex-direction: column;
   font-weight: var(--vuestro-sidebar-font-weight);
   position: relative;
-  z-index: var(--vuestro-sidebar-z-index, 101);
+  z-index: var(--vuestro-sidebar-z-index, 1001);
 }
 
 /* .vuestro-mini-sidebar class is added to body */
