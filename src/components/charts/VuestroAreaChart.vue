@@ -166,7 +166,7 @@ export default {
         });
       },
       deep: true,
-    }
+    },
   },
   beforeMount() {
     _.merge(this, this.options);

@@ -76,14 +76,11 @@ export default {
       }],
       stacked: false,
       padding: 0.1,
-      axisXPadding: 20, // padding for X axes labels
-      axisYPadding: 20, // padding for Y axes labels
       gradientFill: false, // use gradient fill
       hideTooltip: false,
       utc: false,
       transition: 800, // animation transition period
       fillOpacity: 0.7, // opacity for filled bars
-      gridDashArray: 1, // svg grid dash array
       scale: {}, // d3 axes renderers
     };
   },
@@ -101,12 +98,23 @@ export default {
       });
     },
     getCursor() {
-      return d3.area().x(d => d.center).y0(this.height - this.axisXPadding).y1(0);
+      return d3.area().x(d => d.center).y0(this.height).y1(0);
     },
   },
   watch: {
     data(newVal) {
       this.redraw();
+    },
+    options: {
+      handler() {
+        _.merge(this, this.options);
+        // overwrite series separately
+        this.series = _.cloneDeep(this.options.series);
+        this.$nextTick(() => {
+          this.redraw();
+        });
+      },
+      deep: true,
     },
   },
   beforeMount() {

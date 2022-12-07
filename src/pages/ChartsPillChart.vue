@@ -216,6 +216,8 @@ export default {
       ],
       dynamicData: [],
       options: {
+        timeSeries: true,
+        granularity: 'day',
         series: [
           {
             field: 'value',
@@ -225,6 +227,7 @@ export default {
       },
       stackedOptions: {
         stacked: true,
+
         series: [
           {
             field: 'value',
