@@ -9,23 +9,47 @@
     </vuestro-card>
 
     <vuestro-card>
-      <template #description>Gradient fill</template>
+      <template #description>
+        Gradient fill
+        <vuestro-code>gradientFill: true</vuestro-code>
+      </template>
       <vuestro-panel class="chart-wrapper">
         <vuestro-pill-chart :data="data" :options="{ gradientFill: true, ...options }"></vuestro-pill-chart>
       </vuestro-panel>
     </vuestro-card>
 
     <vuestro-card>
-      <template #description>Stacked series</template>
+      <template #description>Multiple Series</template>
       <vuestro-panel class="chart-wrapper">
-        <vuestro-pill-chart :data="data" :options="stackedOptions"></vuestro-pill-chart>
+        <vuestro-pill-chart :data="data" :options="multiSeriesOptions"></vuestro-pill-chart>
       </vuestro-panel>
     </vuestro-card>
 
     <vuestro-card>
-      <template #description>Live updating</template>
+      <template #description>Stacked Series
+        <vuestro-code>stacked: true</vuestro-code>
+      </template>
+      <vuestro-panel class="chart-wrapper">
+        <vuestro-pill-chart :data="data" :options="{ stacked: true, ...multiSeriesOptions }"></vuestro-pill-chart>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #description>
+        Live updating
+        <vuestro-button @click="clearLiveData">
+          Clear
+        </vuestro-button>
+      </template>
       <vuestro-panel class="chart-wrapper">
         <vuestro-pill-chart :data="dynamicData" :options="options"></vuestro-pill-chart>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #description>Small dataset, centered<vuestro-code>center: true</vuestro-code></template>
+      <vuestro-panel class="chart-wrapper">
+        <vuestro-pill-chart :data="smallData" :options="{ center: true, ...options }"></vuestro-pill-chart>
       </vuestro-panel>
     </vuestro-card>
   </vuestro-container>
@@ -37,6 +61,11 @@ export default {
   name: 'ChartPillChart',
   data() {
     return {
+      smallData: [
+        {"key":"2021-12-16T03:37:37Z","value":75,"value2":4},
+        {"key":"2022-03-04T05:07:30Z","value":77,"value2":14},
+        {"key":"2022-07-22T03:36:09Z","value":64,"value2":5},
+      ],
       data: [
         {"key":"2021-12-16T03:37:37Z","value":75,"value2":4},
         {"key":"2022-03-04T05:07:30Z","value":77,"value2":14},
@@ -216,8 +245,6 @@ export default {
       ],
       dynamicData: [],
       options: {
-        timeSeries: true,
-        granularity: 'day',
         series: [
           {
             field: 'value',
@@ -225,9 +252,7 @@ export default {
           }
         ]
       },
-      stackedOptions: {
-        stacked: true,
-
+      multiSeriesOptions: {
         series: [
           {
             field: 'value',
@@ -238,7 +263,7 @@ export default {
             color: 'var(--vuestro-plum)'
           }
         ]
-      }
+      },
     };
   },
   beforeMount() {
@@ -249,7 +274,9 @@ export default {
   mounted() {
     setInterval(() => {
       this.dynamicData.push(this.getPoint());
-      this.dynamicData.shift();
+      if (this.dynamicData.length > 300) {
+        this.dynamicData.shift();
+      }
     }, 1000);
   },
   methods: {
@@ -258,7 +285,10 @@ export default {
         key: new Date(Date.now() - 1000*i),
         value: Math.floor(Math.random()*(100+1)),
       };
-    }
+    },
+    clearLiveData() {
+      this.dynamicData = [];
+    },
   }
 };
 

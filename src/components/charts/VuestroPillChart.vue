@@ -74,6 +74,8 @@ export default {
       series: [{
         field: 'value'
       }],
+      maxBw: 10, // maximum width of bar, to prevent huge bars for small datasets
+      center: false, // centers the bars, useful for small data sets
       stacked: false,
       padding: 0.1,
       gradientFill: false, // use gradient fill
@@ -142,8 +144,17 @@ export default {
 
       let scaleX = d3.scaleBand()
                      .domain(this.data.map((d) => { return d[this.categoryField]; }))
-                     .padding(this.padding)
-                     .range([0, this.width]);
+                     .padding(this.padding);
+      if (this.localData.length * this.maxBw < this.width) {
+        let barsWidth = this.localData.length*this.maxBw;
+        if (this.center) {
+          scaleX.range([this.width/2 - barsWidth/2, this.width/2 + barsWidth/2]);
+        } else {
+          scaleX.range([this.width - barsWidth, this.width]);
+        }
+      } else {
+        scaleX.range([0, this.width]);
+      }
 
       let scaleY = d3.scaleLinear().range([this.height, 0]);
 
