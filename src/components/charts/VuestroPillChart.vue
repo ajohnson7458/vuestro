@@ -213,7 +213,7 @@ export default {
       if (this.localData.length > 0) {
         const x = offsetX;
         const closestPoint = this.getClosestPoint(x);
-        if (this.lastHoverPoint.index !== closestPoint.index) {
+        if (closestPoint && this.lastHoverPoint.index !== closestPoint.index) {
           const point = this.localData[closestPoint.index];
           this.cursorLine = this.getCursor([point]);
           this.$emit('select', this.data[closestPoint.index]);
@@ -222,13 +222,16 @@ export default {
       }
     },
     getClosestPoint(x) {
-      return this.localData
-        .map((point, index) => ({
-          x: point[`${this.series[this.series.length-1].field}_x`],
-          diff: Math.abs(point[`${this.series[this.series.length-1].field}_x`] - x),
-          index,
-        }))
-        .reduce((memo, val) => (memo.diff < val.diff ? memo : val));
+      if (this.series.length > 0) {
+        return this.localData
+          .map((point, index) => ({
+            x: point[`${this.series[this.series.length-1].field}_x`],
+            diff: Math.abs(point[`${this.series[this.series.length-1].field}_x`] - x),
+            index,
+          }))
+          .reduce((memo, val) => (memo.diff < val.diff ? memo : val));
+      }
+      return null;
     },
     onMouseleave() {
       this.cursorLine = '';
