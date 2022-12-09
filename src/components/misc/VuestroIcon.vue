@@ -2,6 +2,7 @@
   <span class="vuestro-icon"
         :class="[`vuestro-icon-${variant}`]">
     <font-awesome-icon :icon="name"
+          :size="size"
           :transform="getTransform()"
           :spin="spin"
           :inverse="inverse"
@@ -36,7 +37,8 @@ export default {
   },
   props: {
     name: { type: String, required: true },           // font awesome icon name (use prefix for brands, etc)
-    scale: { type: [String, Number], default: null }, // positive number for grow, negative for shrink
+    size: { type: String, default: '1x' },            // 2xs to 2xl as well as literal sizing from 1x to 10x
+    scale: { type: [String, Number], default: null }, // positive number for grow, negative for shrink, does not increase size/boundaries
     spin: { type: Boolean, default: false },          // flag to enable spin mode
     inverse: { type: Boolean, default: false },       // flag to enable inverse mode
     pulse: { type: Boolean, default: false },         // flag to enable pulse mode

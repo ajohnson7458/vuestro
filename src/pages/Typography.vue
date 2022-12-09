@@ -83,58 +83,58 @@
       </template>
       <vuestro-container>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x"></vuestro-icon>
           <div>normal</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" flip="horizontal"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" flip="horizontal"></vuestro-icon>
           <div>flip="horizontal"</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" flip="vertical"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" flip="vertical"></vuestro-icon>
           <div>flip="vertical"</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" flip="both"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" flip="both"></vuestro-icon>
           <div>flip="both"</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" rotation="90"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" rotation="90"></vuestro-icon>
           <div>rotation="90"</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" rotation="270"></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" rotation="270"></vuestro-icon>
           <div>rotation="270"</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" spin></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" spin></vuestro-icon>
           <div>spin</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" bounce></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" bounce></vuestro-icon>
           <div>bounce</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" beat></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" beat></vuestro-icon>
           <div>beat</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" fade></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" fade></vuestro-icon>
           <div>fade</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" shake></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" shake></vuestro-icon>
           <div>shake</div>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile">
-          <vuestro-icon name="tractor" scale="10" inverse></vuestro-icon>
+          <vuestro-icon name="tractor" size="3x" inverse></vuestro-icon>
           <div>inverse</div>
         </vuestro-card>
         <vuestro-card>
           <vuestro-hr></vuestro-hr>
         </vuestro-card>
         <vuestro-card cols="1" class="icon-tile" v-for="i in icons" :key="i">
-          <vuestro-icon :name="i" scale="10"></vuestro-icon>
+          <vuestro-icon :name="i" size="3x"></vuestro-icon>
           <div>{{ i }}</div>
         </vuestro-card>
       </vuestro-container>
