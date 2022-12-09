@@ -11,7 +11,7 @@
         Number Spinner
       </template>
       <vuestro-container>
-        <vuestro-spinner v-model="numericValue"></vuestro-spinner>
+        <vuestro-spinner v-model="numericValue" no-margin></vuestro-spinner>
       </vuestro-container>
     </vuestro-card>
 
@@ -32,6 +32,13 @@
         <vuestro-spinner v-model="numericValue">
           <template #placeholder>Retries</template>
         </vuestro-spinner>
+        <vuestro-spinner v-model="numericValue">
+          <template #placeholder>
+            <vuestro-pill color='var(--vuestro-green)' size="sm" no-margin>
+              <template #title>Title</template>
+            </vuestro-pill>
+          </template>
+        </vuestro-spinner>
       </vuestro-container>
     </vuestro-card>
 
@@ -45,7 +52,7 @@ export default {
   name: 'InputsSpinner',
   data() {
     return {
-      numericValue: 3,
+      numericValue: 37372,
       largeNumber: 1234,
     };
   },

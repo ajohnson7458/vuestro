@@ -1,5 +1,5 @@
 <template>
-  <div class="vuestro-spinner">
+  <div class="vuestro-spinner" :class="{ noMargin }">
     <vuestro-button round no-border no-margin size="lg" @click="increase">
       <vuestro-icon name="chevron-up"></vuestro-icon>
     </vuestro-button>
@@ -27,9 +27,10 @@
 export default {
   name: 'VuestroSpinner',
   props: {
-    value: { type: null, required: true },
-    step: { type: null, default: 1 },
-    render: { type: Function, default: (d) => d },
+    value: { type: null, required: true },         // v-model compatible value bind
+    step: { type: null, default: 1 },              // step size for spinner buttons
+    render: { type: Function, default: (d) => d }, // function called to render value
+    noMargin: { type: Boolean, default: false },   // remove margins
   },
   methods: {
     increase() {
@@ -56,6 +57,10 @@ export default {
   flex-direction: column;
   align-items: center;
   font-size: 24px;
+  margin: var(--vuestro-control-margin-v) var(--vuestro-control-margin-h);
+}
+.vuestro-spinner.noMargin {
+  margin: 0;
 }
 
 .vuestro-spinner-text {
@@ -66,6 +71,8 @@ export default {
   font-size: 0.5em;
   width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 </style>
