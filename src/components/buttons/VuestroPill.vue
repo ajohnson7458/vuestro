@@ -25,21 +25,21 @@
        :class="[ size, variant,
                  { clickable: $listeners.click,
                    closable: $listeners.close,
-                   'vuestro-pill-title-only': $slots.title && !$slots.value,
+                   'vuestro-pill-title-only': $scopedSlots.title && !$slots.value,
                    shadow, draggable, geopattern, noMargin }]"
        :style="style"
        @click="onClick">
-    <div v-if="!$slots.title && !$slots.icon"
+    <div v-if="!$scopedSlots.title && !$slots.icon"
          class="vuestro-pill-title"
          :class="{ autoCapital }">
       {{ titleComputed || '&#8203;' }}
     </div>
-    <div v-if="$slots.title || $slots.icon"
+    <div v-if="$scopedSlots.title || $slots.icon"
          class="vuestro-pill-title">
       <div v-if="$slots.icon" class="vuestro-pill-icon-slot">
         <slot name="icon"></slot>
       </div>
-      <div v-if="$slots.title"
+      <div v-if="$scopedSlots.title"
            class="vuestro-pill-title-slot"
            :class="{ 'vuestro-pill-title-slot-with-buttons': $slots['title-buttons'] }">
         <slot name="title"></slot>
@@ -93,12 +93,13 @@ export default {
     style() {
       let ret = {};
       if (_.isString(this.geopattern)) {
-        let text;
+        let text = '';
         // use the value of geopattern as the seed if it's a string
         if (this.geopattern.length > 0) {
           text = this.geopattern;
-        } else {
-          text = this.$slots.title[0].text || '';
+        } else if (this.$scopedSlots.title) {
+          // else try to get text from title slot
+          text = this.$scopedSlots.title()[0].text || '';
         }
         ret['--vuestro-pill-geopattern'] = GeoPattern.generate(text.trim()).toDataUrl();
         ret['--vuestro-pill-title-fg'] = 'var(--vuestro-text-color-light)';
@@ -111,8 +112,8 @@ export default {
     },
     titleComputed() {
       this.autoCapital = true;
-      if (this.$slots.value && this.$slots.value[0]) {
-        let v = this.value || this.$slots.value[0].text;
+      if (this.$scopedSlots.value && this.$scopedSlots.value()[0]) {
+        let v = this.value || this.$scopedSlots.value()[0].text;
         if (v && _.isString(v)) {
           return v.trim().slice(0, 1).toUpperCase();
         }
