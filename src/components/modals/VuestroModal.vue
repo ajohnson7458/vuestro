@@ -3,7 +3,7 @@
 //  1. parent binds the active prop
 //  2. parent calls onOpen() using a ref
 //
-// 
+//
 //
 // CSS Vars:
 //  --vuestro-modal-content-bg - the background shade (outside modal)
@@ -17,7 +17,7 @@
               @after-enter="onAfterOpen"
               @after-leave="onAfterClose">
     <div class="vuestro-modal" v-if="active || localActive" @click.exact="onBlur">
-      <div class="vuestro-modal-inner">
+      <div class="vuestro-modal-inner" :class="{ fullscreenActive }">
         <!--TITLEBAR (ALWAYS DARK)-->
         <div v-if="$scopedSlots.title || $scopedSlots.toolbar"
              class="vuestro-modal-titlebar vuestro-dark">
@@ -27,7 +27,15 @@
           </div>
           <!--BUTTON SLOT-->
           <div class="vuestro-modal-toolbar-buttons">
-            <slot name="toolbar"></slot>
+            <slot name="toolbar"
+                  :onFullscreen="onFullscreen"
+                  :onClose="onClose">
+            </slot>
+            <vuestro-button v-if="fullscreen" round no-border
+                            :value="fullscreenActive"
+                            @click.stop="onFullscreen">
+              <vuestro-icon name="expand"></vuestro-icon>
+            </vuestro-button>
             <template v-if="closeText.length > 0">
               <vuestro-button pill no-border class="close-button" @click.stop="onClose">{{ closeText }}</vuestro-button>
             </template>
@@ -63,10 +71,12 @@ export default {
     active: { type: Boolean, required: false },     // flag for controlling/binding open/close to outside var
     closeText: { type: String, default: '' },       // override default close button with this text
     closeOnBlur: { type: Boolean, default: false }, // close modal with a click outside the modal
+    fullscreen: { type: Boolean, default: false },  // flag for showing fullscreen button
   },
   data() {
     return {
-      localActive: false, // local value to allow standalone-operation (without using active prop)
+      localActive: false,      // local value to allow standalone-operation (without using active prop)
+      fullscreenActive: false, // flag for forced full-screen mode
     };
   },
   methods: {
@@ -90,7 +100,10 @@ export default {
     },
     onAfterClose() {
       this.$emit('after-close');
-    }
+    },
+    onFullscreen() {
+      this.fullscreenActive = !this.fullscreenActive;
+    },
   },
 };
 
@@ -190,6 +203,7 @@ export default {
   display: flex;
   margin-left: auto;
   align-items: center;
+  gap: 0.1em;
 }
 .vuestro-modal-default-slot {
   flex-grow: 1;
@@ -208,7 +222,14 @@ export default {
 	border-bottom-left-radius: var(--vuestro-modal-border-radius);
 	border-bottom-right-radius: var(--vuestro-modal-border-radius);
 }
-
+/*fullscreen mode*/
+.vuestro-modal-inner.fullscreenActive {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin-top: 0;
+}
+/*force fullscreen mode for narrow screen*/
 @media screen and (max-width: 768px) {
   .vuestro-modal-inner {
     width: 100%;

@@ -20,6 +20,7 @@ export default {
   name: 'VuestroContainer',
   props: {
     gutter: { type: String, default: 'md' },  // { 'none', 'sm', 'md', 'lg', 'xl' }
+    gap: { type: String, default: '0px' },    // flexbox gap
     inner: { type: Boolean, default: false }, // uses an absolutely positioned inner div
 
     column: { type: Boolean, default: false },

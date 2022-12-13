@@ -10,7 +10,7 @@
       </template>
       <vuestro-container>
         <vuestro-button value @click="$refs.slotLabelModal.onOpen()">Open Modal</vuestro-button>
-        <vuestro-modal ref="slotLabelModal">
+        <vuestro-modal ref="slotLabelModal" fullscreen>
           <template #title><vuestro-code>#title</vuestro-code></template>
           <template #toolbar><vuestro-code>#toolbar</vuestro-code></template>
           <template #default><vuestro-code>#default</vuestro-code></template>
@@ -26,7 +26,7 @@
       </template>
       <vuestro-container>
         <vuestro-button value @click="modalOpen1 = true">Open Modal</vuestro-button>
-        <vuestro-modal :active.sync="modalOpen1" no-scroll>
+        <vuestro-modal :active.sync="modalOpen1" no-scroll fullscreen>
           <template #title>VuestroModal</template>
           <template #toolbar>
             <vuestro-tooltip position="top">

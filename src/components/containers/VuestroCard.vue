@@ -1,5 +1,7 @@
 <template>
-  <div class="vuestro-card" :class="[`basis-${cols}`, gutter, { overflowHidden, stretch, shrink, row }]">
+  <div class="vuestro-card"
+       :class="[`basis-${cols}`, gutter, { overflowHidden, stretch, shrink, row }]"
+       :style="style">
     <!--SLOT FOR HEADER TEXT (only show if "heading" slot was provided)-->
     <div v-if="$scopedSlots.heading"
          class="vuestro-card-heading"
@@ -40,7 +42,7 @@ export default {
     row: { type: Boolean, default: false },
     gutter: { type: String, default: '' },
     scroll: { type: Boolean, default: false },
-    
+    aspect: { type: String, default: null }, // aspect-ratio CSS prop
   },
   computed: {
     colorBarStyle() {
@@ -55,6 +57,13 @@ export default {
         };
       }
     },
+    style() {
+      let ret = {};
+      if (this.aspect) {
+        ret['aspect-ratio'] = this.aspect;
+      }
+      return ret;
+    }
   },
   methods: {
     resize() {
