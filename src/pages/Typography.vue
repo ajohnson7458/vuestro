@@ -22,6 +22,7 @@
         </vuestro-clean-kvp>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>VuestroLabel</template>
@@ -30,6 +31,7 @@
         <vuestro-label flush-left>Label</vuestro-label><vuestro-icon name="spinner" pulse></vuestro-icon>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>VuestroCode</template>
@@ -38,6 +40,7 @@
         <vuestro-code>x = 1;</vuestro-code> or copyable: <vuestro-code clipboard>y = 2;</vuestro-code>
       </p>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>Async Text</template>
@@ -48,6 +51,7 @@
         <vuestro-async-text :value="asyncText"></vuestro-async-text>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>Markdown</template>
@@ -58,6 +62,7 @@
         <vuestro-markdown :value="markdownText"></vuestro-markdown>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>Search Term Highlighting</template>
@@ -75,6 +80,7 @@
         <vuestro-search-highlight searchTerm="wontfindthis">String with no matches!</vuestro-search-highlight>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
 
     <vuestro-card>
       <template #subheading>Icons</template>
@@ -139,6 +145,20 @@
         </vuestro-card>
       </vuestro-container>
     </vuestro-card>
+    <vuestro-hr></vuestro-hr>
+
+    <vuestro-card>
+      <template #subheading>CSS Styles</template>
+      <template #description>
+        <span>Misc classes for use on text, e.g. in table column definitions</span>
+      </template>
+      <vuestro-container>
+        <vuestro-card v-for="t in textClasses" :key="t">
+          <div :class="t">{{ t }}</div>
+        </vuestro-card>
+      </vuestro-container>
+    </vuestro-card>
+
   </vuestro-container>
 </template>
 
@@ -327,6 +347,25 @@ Body Text
         'wifi',
         'window-maximize',
         'wrench',
+      ],
+      textClasses: [
+        'vuestro-text-center',
+        'vuestro-text-monospace',
+        'vuestro-text-larger',
+        'vuestro-text-smaller',
+        'vuestro-text-bold',
+        'vuestro-text-light',
+        'vuestro-text-uppercase',
+        'vuestro-text-lowercase',
+        'vuestro-text-underline',
+        'vuestro-text-italic',
+        'vuestro-text-muted',
+        'vuestro-text-primary',
+        'vuestro-text-secondary',
+        'vuestro-text-success',
+        'vuestro-text-info',
+        'vuestro-text-warning',
+        'vuestro-text-danger',
       ],
     };
   },

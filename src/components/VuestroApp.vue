@@ -302,6 +302,7 @@ export default {
   --vuestro-control-margin-h: 5px;
 }
 
+/*MISC STYLES FOR USE IN TABLES, ETC*/
 .vuestro-mla {
   margin-left: auto;
 }
@@ -310,6 +311,57 @@ export default {
 }
 .vuestro-clickable {
   cursor: pointer;
+}
+.vuestro-text-center {
+  text-align: center;
+}
+.vuestro-text-monospace {
+  font-family: Monaco, monospace;
+}
+.vuestro-text-larger {
+  font-size: 1.15em;
+}
+.vuestro-text-smaller {
+  font-size: 0.85em;
+}
+.vuestro-text-bold {
+  font-weight: 500;
+}
+.vuestro-text-light {
+  font-weight: 300;
+}
+.vuestro-text-uppercase {
+  text-transform: uppercase;
+}
+.vuestro-text-lowercase {
+  text-transform: lowercase;
+}
+.vuestro-text-underline {
+  text-decoration: underline;
+}
+.vuestro-text-italic {
+  font-style: italic;
+}
+.vuestro-text-muted {
+  color: var(--vuestro-text-color-muted);
+}
+.vuestro-text-primary {
+  color: var(--vuestro-primary);
+}
+.vuestro-text-secondary {
+  color: var(--vuestro-secondary);
+}
+.vuestro-text-success {
+  color: var(--vuestro-success);
+}
+.vuestro-text-info {
+  color: var(--vuestro-info);
+}
+.vuestro-text-warning {
+  color: var(--vuestro-warning);
+}
+.vuestro-text-danger {
+  color: var(--vuestro-danger);
 }
 
 </style>
