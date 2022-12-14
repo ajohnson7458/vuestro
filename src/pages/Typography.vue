@@ -136,6 +136,10 @@
           <vuestro-icon name="tractor" size="3x" inverse></vuestro-icon>
           <div>inverse</div>
         </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="tractor" size="3x" variant="success"></vuestro-icon>
+          <div>variant="success"</div>
+        </vuestro-card>
         <vuestro-card>
           <vuestro-hr></vuestro-hr>
         </vuestro-card>

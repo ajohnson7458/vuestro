@@ -79,22 +79,22 @@ export default {
   position: relative;
 }
 .vuestro-icon-primary > svg {
-  fill: var(--vuestro-primary);
+  color: var(--vuestro-primary);
 }
 .vuestro-icon-secondary > svg {
-  fill: var(--vuestro-secondary);
+  color: var(--vuestro-secondary);
 }
 .vuestro-icon-success > svg {
-  fill: var(--vuestro-success);
+  color: var(--vuestro-success);
 }
 .vuestro-icon-warning > svg {
-  fill: var(--vuestro-warning);
+  color: var(--vuestro-warning);
 }
 .vuestro-icon-danger > svg {
-  fill: var(--vuestro-danger);
+  color: var(--vuestro-danger);
 }
 .vuestro-icon-info > svg {
-  fill: var(--vuestro-info);
+  color: var(--vuestro-info);
 }
 .vuestro-icon-counter {
   position: absolute;
