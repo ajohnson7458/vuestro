@@ -65,6 +65,12 @@ export default {
         return backupText;
       }
     },
+    vuestroRandomNumber(min, max) {
+      return Math.random() * (max - min) + min;
+    },
+    vuestroRandomInteger(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
+    },
     // generate a random hex string with the given length
     vuestroGenerateId(length) {
       function dec2hex (dec) {

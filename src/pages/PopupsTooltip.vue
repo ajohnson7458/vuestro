@@ -113,7 +113,10 @@
       <template #description><span>Tooltip can be manually opened and closed in response to method call. Methods provided are <em>open()</em>, <em>close()</em>, and <em>openForMs(milliseconds)</em></span></template>
       <vuestro-container justify="space-between">
         <vuestro-tooltip position="right" no-wrap disabled ref="disabledTooltip">
-          <template #content>Download entire log as JSON</template>
+          <template #content="{ close }">
+            Download entire log as JSON
+            <vuestro-button @click="close">Close</vuestro-button>
+          </template>
           <vuestro-button round no-border>
             <vuestro-icon name="download"></vuestro-icon>
           </vuestro-button>

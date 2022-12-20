@@ -183,6 +183,31 @@
       </vuestro-panel>
     </vuestro-card>
 
+    <vuestro-card cols="6">
+      <vuestro-panel variant="shaded">
+        <template #title>Vuestro Panel Shaded Variant</template>
+        <vuestro-container>
+          <vuestro-card>
+            <template #description>
+              <span>Set the <vuestro-code>variant="shaded"</vuestro-code> property</span>
+            </template>
+          </vuestro-card>
+        </vuestro-container>
+      </vuestro-panel>
+    </vuestro-card>
+    
+    <vuestro-card cols="6">
+      <vuestro-panel variant="transparent">
+        <template #title>Vuestro Panel Transparent Variant</template>
+        <vuestro-container>
+          <vuestro-card>
+            <template #description>
+              <span>Set the <vuestro-code>variant="transparent"</vuestro-code> property</span>
+            </template>
+          </vuestro-card>
+        </vuestro-container>
+      </vuestro-panel>
+    </vuestro-card>
 
     <vuestro-card cols="6">
       <vuestro-panel class="colorized-toolbar" collapsible collapsed no-stretch>

@@ -4,12 +4,14 @@
        @mouseover="onMouseOver"
        @click="onClick"
        @mouseleave="onMouseLeave">
+    <!-- THE ALWAYS-VISIBLE PART -->
     <slot></slot>
+    <!--THE POP-UP PART-->
     <div ref="content"
          class="vuestro-tooltip-content vuestro-dark"
          :class="{ noWrap, noPadding }"
          :style="[ contentPos, { 'min-width': `${minWidth}px`, visibility: active ? 'visible':'hidden', opacity: active ? '1':'0' }]">
-      <slot name="content"></slot>
+      <slot name="content" :close="close"></slot>
     </div>
   </div>
 </template>
@@ -61,6 +63,7 @@ export default {
 
       let left;
       let arrowSize = parseInt(getComputedStyle(this.$el).getPropertyValue('--vuestro-tooltip-arrow-size'), 10);
+      // baseline position
       switch(this.position) {
         case 'top':
           left = elBcr.x + elBcr.width/2 - bcr.width/2;
@@ -79,7 +82,15 @@ export default {
           this.contentPos.top = `${elBcr.bottom + arrowSize}px`;
           break;
       }
-      this.contentPos.left = left > 0 ? `${left}px`:'0';
+      // check left boundaries
+      if (left < 0) {
+        left = 0;
+      }
+      // check right boundary
+      if (left + bcr.width > window.innerWidth) {
+        left = window.innerWidth - bcr.width;
+      }
+      this.contentPos.left = `${left}px`;
 
       this.active = true;
       this.$emit('enter');
@@ -127,7 +138,7 @@ export default {
   border: var(--vuestro-control-border-width) solid var(--vuestro-dropdown-outline);
   padding: var(--vuestro-tooltip-padding);
   border-radius: var(--vuestro-control-border-radius);
-  z-index: 999 !important;
+  z-index: 1003 !important;
   font-size: var(--vuestro-tooltip-font-size);
 }
 .vuestro-tooltip-content.noPadding {
@@ -145,7 +156,7 @@ export default {
   border-left: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-right: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-top: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-dropdown-content-bg);
-  z-index: 998 !important;
+  z-index: 1002 !important;
 }
 .vuestro-dark .vuestro-tooltip.active.top::after {
   border-top: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-outline);
@@ -159,7 +170,7 @@ export default {
   border-top: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-bottom: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-left: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-dropdown-content-bg);
-  z-index: 998 !important;
+  z-index: 1002 !important;
 }
 .vuestro-dark .vuestro-tooltip.active.left::after {
   border-left: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-outline);
@@ -173,7 +184,7 @@ export default {
   border-left: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-right: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-bottom: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-dropdown-content-bg);
-  z-index: 998 !important;
+  z-index: 1002 !important;
 }
 .vuestro-dark .vuestro-tooltip.active.bottom::after {
   border-bottom: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-outline);
@@ -187,7 +198,7 @@ export default {
   border-top: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-bottom: var(--vuestro-tooltip-arrow-size) solid transparent;
   border-right: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-dropdown-content-bg);
-  z-index: 998 !important;
+  z-index: 1002 !important;
 }
 .vuestro-dark .vuestro-tooltip.active.right::after {
   border-right: var(--vuestro-tooltip-arrow-size) solid var(--vuestro-outline);

@@ -17,7 +17,8 @@
 //
 <template>
   <div class="vuestro-panel"
-       :class="[ gutter, { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]">
+       :class="[ `vuestro-panel-${variant}`, gutter,
+                 { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]">
     <!--TOOLBAR-->
     <div v-if="hasTitlebar" class="vuestro-panel-title-toolbar">
       <!--CARET FOR COLLAPSE-->
@@ -74,6 +75,7 @@
 export default {
   name: 'VuestroPanel',
   props: {
+    variant: { type: String, default: 'outline' },   // outline/shaded/transparent
     gutter: { type: String, default: 'md' },         // gutter size override, usually inherited
     spinner: { type: Boolean, default: false },      // true if spinner should be shown next to title to show loading status
     collapsible: { type: Boolean, default: false },  // true if collapsible, automatically adds caret
@@ -169,9 +171,7 @@ export default {
   background-color: var(--vuestro-panel-bg);
   color: var(--vuestro-panel-fg);
   transition: background-color 0.4s;
-  border-radius: var(--vuestro-panel-border-radius);
   box-shadow: var(--vuestro-panel-box-shadow);
-  border: var(--vuestro-panel-border);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -187,6 +187,19 @@ export default {
 .vuestro-panel.noBorder {
   box-shadow: none;
   border: none;
+}
+/*VARIANTS*/
+.vuestro-panel-outline {
+  border: var(--vuestro-panel-border);
+  border-radius: var(--vuestro-panel-border-radius);
+}
+.vuestro-panel-shaded {
+  background-color: var(--vuestro-field-bg);
+  border-radius: var(--vuestro-panel-border-radius);
+}
+.vuestro-panel-transparent {
+  background-color: transparent;
+  box-shadow: none;
 }
 
 /*TOOLBAR*/
