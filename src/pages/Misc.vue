@@ -24,6 +24,16 @@
       </vuestro-container>
     </vuestro-card>
 
+    <vuestro-card>
+      <template #heading>VuestroHr</template>
+      <template #subheading>Use VuestroHr as a horizontal divider, with props for width and line style</template>
+
+      <vuestro-hr margin="1em"></vuestro-hr>
+      <vuestro-hr margin="1em" width="80"></vuestro-hr>
+      <vuestro-hr margin="1em" width="60" line="dotted"></vuestro-hr>
+      <vuestro-hr margin="1em" width="50" line="dashed"></vuestro-hr>
+    </vuestro-card>
+
   </vuestro-container>
 </template>
 
