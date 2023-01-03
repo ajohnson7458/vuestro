@@ -13,7 +13,11 @@
       <div class="vuestro-object-browser-item">
         <div class="vuestro-object-browser-item-kv">
           <div class="vuestro-object-browser-item-gutter">
-            <vuestro-caret v-if="isObject(v) || isArray(v)" :collapsed="isCollapsed(k)" @click="toggleCollapse(k)"></vuestro-caret>
+            <vuestro-caret v-if="isObject(v) || isArray(v)" 
+                           size="sm"
+                           :collapsed="isCollapsed(k)" 
+                           @click="toggleCollapse(k)">
+            </vuestro-caret>
           </div>
           <!--KEY TITLE-->
           <span class="vuestro-object-browser-item-key-title">{{ k }}:</span>

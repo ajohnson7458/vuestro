@@ -37,7 +37,6 @@ export default {
   --size: 12px;
 }
 
-
 .vuestro-caret {
   width: var(--size);
   height: var(--size);
