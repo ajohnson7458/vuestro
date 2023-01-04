@@ -12,13 +12,13 @@
     <div v-else v-for="(v, k) in data">
       <div class="vuestro-object-browser-item">
         <div class="vuestro-object-browser-item-kv">
-          <div class="vuestro-object-browser-item-gutter">
-            <vuestro-caret v-if="isObject(v) || isArray(v)" 
-                           size="sm"
-                           :collapsed="isCollapsed(k)" 
-                           @click="toggleCollapse(k)">
-            </vuestro-caret>
-          </div>
+          <!--<div class="vuestro-object-browser-item-gutter">-->
+          <!--  <vuestro-caret v-if="isObject(v) || isArray(v)"-->
+          <!--                 size="sm"-->
+          <!--                 :collapsed="isCollapsed(k)"-->
+          <!--                 @click="toggleCollapse(k)">-->
+          <!--  </vuestro-caret>-->
+          <!--</div>-->
           <!--KEY TITLE-->
           <span class="vuestro-object-browser-item-key-title">{{ k }}:</span>
           <!--EDITING CONTROLS-->
@@ -34,14 +34,21 @@
           </template>
           <template v-else>
             <!--TYPE-DEPENDENT RENDERING-->
-            <span v-if="showTypes && isString(v)" class="vuestro-object-browser-item-string" title="String">{{ JSON.stringify(v) }}</span>
-            <span v-if="showTypes && isBoolean(v)" class="vuestro-object-browser-item-bool" title="Boolean">{{ v }}</span>
-            <span v-if="showTypes && isDate(v)" class="vuestro-object-browser-item-date" title="Date">{{ v.toISOString() }}</span>
-            <span v-if="showTypes && isNumber(v)" class="vuestro-object-browser-item-number" title="Number">{{ v }}</span>
-            <span v-if="showTypes && isArray(v)">Array[{{ v.length }}]</span>
-            <span v-if="showTypes && isObject(v)">Object[{{ Object.keys(v).length }}]</span>
+            <span v-if="isString(v)" class="vuestro-object-browser-item-string" title="String">{{ JSON.stringify(v) }}</span>
+            <span v-if="isBoolean(v)" class="vuestro-object-browser-item-bool" title="Boolean">{{ v }}</span>
+            <span v-if="isDate(v)" class="vuestro-object-browser-item-date" title="Date">{{ v.toISOString() }}</span>
+            <span v-if="isNumber(v)" class="vuestro-object-browser-item-number" title="Number">{{ v }}</span>
             <span v-if="v === null" class="vuestro-object-browser-item-null">null</span>
             <span v-if="v === undefined" class="vuestro-object-browser-item-null">undefined</span>
+            <!--ARRAY/OBJECT SPECIAL-->
+            <div v-if="isArray(v)" class="vuestro-object-browser-expand-button"
+                 @click="toggleCollapse(k)">
+              <vuestro-icon name="ellipsis"></vuestro-icon>
+            </div>
+            <div v-if="isObject(v)" class="vuestro-object-browser-expand-button"
+                 @click="toggleCollapse(k)">
+              <vuestro-icon name="ellipsis"></vuestro-icon>
+            </div>
             <span v-if="isEditable(k, v)" class="vuestro-object-editing-buttons">
               <vuestro-button round no-border no-margin size="sm" @click="onEditActive(k)">
                 <vuestro-icon name="pen"></vuestro-icon>
@@ -115,7 +122,6 @@ export default {
       addingMember: false,
       newMemberKey: '',
       newMemberVal: '',
-      showTypes: true,
     };
   },
   computed: {
@@ -360,6 +366,15 @@ export default {
 
 .vuestro-object-add-member {
   padding: 0 1.3em;
+}
+
+.vuestro-object-browser-expand-button {
+  height: 0.75em;
+  cursor: pointer;
+  background-color: var(--vuestro-secondary);
+  border-radius: 999px;
+  padding: 0 0.2em;
+  display: flex;
 }
 
 </style>
