@@ -1,24 +1,16 @@
 <template>
-  <div class="vuestro-object-browser-item" :class="{ root: parent === 'root' }">
+  <div class="vuestro-object-browser-item" :class="{ root: parent === 'root', noMargin }">
     <!--ISEMPTY MESSAGE-->
     <div v-if="empty" class="vuestro-object-browser-empty">{{ emptyMessage }}</div>
     <!--MAIN LOOP-->
     <div v-if="isString(data)">
-      <div class="vuestro-object-browser-item-gutter"></div>
-      <div class="vuestro-object-browser-item-string" title="String">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-string" title="String">
         {{ data }}
       </div>
     </div>
     <div v-else v-for="(v, k) in data">
-      <div class="vuestro-object-browser-item">
+      <div class="vuestro-object-browser-item" :class="{ noMargin }">
         <div class="vuestro-object-browser-item-kv">
-          <!--<div class="vuestro-object-browser-item-gutter">-->
-          <!--  <vuestro-caret v-if="isObject(v) || isArray(v)"-->
-          <!--                 size="sm"-->
-          <!--                 :collapsed="isCollapsed(k)"-->
-          <!--                 @click="toggleCollapse(k)">-->
-          <!--  </vuestro-caret>-->
-          <!--</div>-->
           <!--KEY TITLE-->
           <span class="vuestro-object-browser-item-key-title">{{ k }}:</span>
           <!--EDITING CONTROLS-->
@@ -109,6 +101,7 @@ export default {
     data: { type: null },
     options: { type: Object, default: () => ({}) },
     parent: { type: null, default: 'root' }, // non-end-user property, used for recursion
+    noMargin: { type: Boolean, default: false }, // eliminate margins
   },
   data() {
     return {
@@ -298,14 +291,12 @@ export default {
   padding-left: 0.2em;
   padding-bottom: 0.4em;
 }
+.vuestro-object-browser-item.noMargin {
+  padding: 0;
+}
 
 .vuestro-object-browser-item > div {
   display: flex;
-}
-
-.vuestro-object-browser-item-gutter {
-  width: 1.2em;
-  flex: none;
 }
 
 .vuestro-object-browser-item-kv {
@@ -352,7 +343,7 @@ export default {
 }
 
 .vuestro-object-browser-empty {
-  padding: 0.1em 1.2em;
+  padding: 0.1em 0.3em;
 }
 /* decrease padding for empty root */
 .vuestro-object-browser-item.root > .vuestro-object-browser-empty {
@@ -365,7 +356,7 @@ export default {
 }
 
 .vuestro-object-add-member {
-  padding: 0 1.3em;
+  padding: 0 0.3em;
 }
 
 .vuestro-object-browser-expand-button {

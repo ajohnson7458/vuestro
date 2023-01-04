@@ -39,7 +39,8 @@
         <span>Set the <em>editable</em> and/or <em>extendable</em> options to provide editing controls that directly modify the bound object.</span>
       </template>
       <vuestro-panel>
-        <vuestro-object-browser :data="testObject" :options="{ editable: true, extendable: true }"></vuestro-object-browser>
+        <vuestro-object-browser :data="testObject" :options="{ editable: true, extendable: true }" @change="onChangeObject">
+        </vuestro-object-browser>
       </vuestro-panel>
     </vuestro-card>
 
@@ -50,7 +51,7 @@
       <vuestro-panel>
         <vuestro-object-browser :options="{ startExpanded: true }" :data="testObject">
           <template #post-value="{ k, v, parent }">
-            <vuestro-button size="sm">button</vuestro-button>
+            <vuestro-button size="sm" no-margin>button</vuestro-button>
           </template>
         </vuestro-object-browser>
       </vuestro-panel>
@@ -128,6 +129,11 @@ export default {
       ],
     };
   },
+  methods: {
+    onChangeObject(d) {
+      console.log(d);
+    },
+  }
 };
 
 </script>
