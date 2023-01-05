@@ -20,7 +20,7 @@
       <template #description>Fit text to width, with optional wrapping</template>
       <vuestro-container style="height: 100px" no-wrap resize="both">
         <vuestro-card>
-          <vuestro-auto-text>Font size will be automatically set to fit a fixed width</vuestro-auto-text>
+          <vuestro-auto-text middle>Font size will be automatically set to fit a fixed width</vuestro-auto-text>
         </vuestro-card>
       </vuestro-container>
     </vuestro-card>
