@@ -103,6 +103,38 @@
               <vuestro-icon name="plus"></vuestro-icon>
             </vuestro-button>
           </template>
+          <template v-if="p.items === 'option'">
+            <vuestro-container column content="stretch" gutter="none">
+              <div class="vuestro-parameter-list-array-item"
+                   v-for="(item, idx) in getValueOrSetDefault(p)" :key="idx">
+                <vuestro-text-field variant="shaded"
+                                    stretch clearable
+                                    auto-focus
+                                    readonly
+                                    :value="item"
+                                    >
+                </vuestro-text-field>
+                <vuestro-button round no-border
+                                variant="danger" size="sm"
+                                @click="removeArrayItem(p, idx)">
+                  <vuestro-icon name="trash"></vuestro-icon>
+                </vuestro-button>
+              </div>
+            </vuestro-container>
+            <vuestro-dropdown>
+              <template #button>
+                <vuestro-button pill value variant="info">
+                  +
+                </vuestro-button>
+              </template>
+              <template #default="{ close }">
+                <vuestro-list-button v-for="o in p.options" :key="o"
+                  @click.stop="setArrayField(p, o, close)"> {{ o }}
+                </vuestro-list-button>
+              </template>
+            </vuestro-dropdown>
+          </template>
+
         </vuestro-container>
         <!--DATE-->
         <vuestro-dropdown v-else-if="p.type === 'date'" stretch no-scroll>
@@ -238,6 +270,15 @@ export default {
         default:
           newVal[param.field] = value;
       }
+      this.$emit('input', newVal);
+      callback && callback();
+    },
+    setArrayField(param, value, callback){
+      let newVal = _.cloneDeep(this.value);
+      if (!_.isArray(newVal[param.field])) {
+        newVal[param.field] = [];
+      }
+      newVal[param.field].push(value);
       this.$emit('input', newVal);
       callback && callback();
     },

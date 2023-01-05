@@ -91,6 +91,16 @@ export default {
           default: ['one', 'two', 'three'],
         },
         {
+          title: 'Privileges',
+          description: 'Example of array of strings, with dropdown of options for addition',
+          field: 'privileges',
+          type: 'array',
+          items: 'option',
+          collapsible: true,
+          options: ['read', 'write', 'delete', 'export'],
+          default: ['read'],
+        },
+        {
           title: 'Variables',
           description: 'Example of key value pair variables',
           field: 'kvps',
