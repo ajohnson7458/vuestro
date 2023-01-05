@@ -18,7 +18,8 @@
 <template>
   <div class="vuestro-panel"
        :class="[ `vuestro-panel-${variant}`, gutter,
-                 { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]">
+                 { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]"
+       :style="style">
     <!--TOOLBAR-->
     <div v-if="hasTitlebar" class="vuestro-panel-title-toolbar">
       <!--CARET FOR COLLAPSE-->
@@ -89,6 +90,7 @@ export default {
     overflowHidden: { type: Boolean, default: false }, // true for overflow hidden on content
     draggable: { type: Boolean, default: false },    // true for .drag class and move cursor on title
     row: { type: Boolean, default: false },          // true for flexbox row mode instead of column in content
+    resize: { type: String, default: null },         // enable browser resize control, set to 'both', 'horizontal', or 'vertical'
   },
   computed: {
     hasTitlebar() {
@@ -96,6 +98,14 @@ export default {
     },
     hasContent() {
       return this.$slots.default;
+    },
+    style() {
+      if (this.resize) {
+        return {
+          resize: this.resize,
+          overflow: 'auto',
+        };
+      }
     },
   },
   data() {

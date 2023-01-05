@@ -37,6 +37,7 @@ export default {
     content: { type: String, default: 'flex-start' }, // use standard flexbox values for align-content
 
     overflowHidden: { type: Boolean, default: null }, // adds overflow:hidden css
+    resize: { type: String, default: null },          // enable browser resize control, set to 'both', 'horizontal', or 'vertical'
   },
   computed: {
     style() {
@@ -48,7 +49,7 @@ export default {
       if (this.reverse) {
         flexDirection += '-reverse';
       }
-      return {
+      let ret = {
         'padding': 'var(--vuestro-gutter)',
         'flex-direction': flexDirection,
         'flex-grow': this.grow,
@@ -59,6 +60,11 @@ export default {
         'align-items': this.align,
         'align-content': this.content,
       };
+      if (this.resize) {
+        ret.resize = this.resize;
+        ret.overflow = 'auto';
+      }
+      return ret;
     },
   },
   methods: {

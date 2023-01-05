@@ -195,7 +195,7 @@
         </vuestro-container>
       </vuestro-panel>
     </vuestro-card>
-    
+
     <vuestro-card cols="6">
       <vuestro-panel variant="transparent">
         <template #title>Vuestro Panel Transparent Variant</template>
@@ -222,6 +222,19 @@
       </vuestro-panel>
       <vuestro-panel no-stretch style="--vuestro-panel-toolbar-bg: var(--vuestro-blue)">
         <template #title>Colorized title-only</template>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card cols="6">
+      <vuestro-panel resize="both">
+        <template #title>Resizable Vuestro Panel</template>
+        <vuestro-container>
+          <vuestro-card>
+            <template #description>
+              <span>Set the <vuestro-code>resize="both"</vuestro-code> property</span>
+            </template>
+          </vuestro-card>
+        </vuestro-container>
       </vuestro-panel>
     </vuestro-card>
 
