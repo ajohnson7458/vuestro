@@ -137,6 +137,9 @@ export default {
       });
     }
   },
+  destroyed() {
+    this.$parent.resize(); // make sure grid handles the removal of this box
+  },
 };
 </script>
 

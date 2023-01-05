@@ -21,7 +21,9 @@
           <component :is="route.meta.badgeComponent"></component>
         </template>
       </div>
-      <vuestro-sub-routes v-if="route.children" :role="role" :route="route"></vuestro-sub-routes>
+      <vuestro-sub-routes v-if="route.children && route.children.length > 0"
+                          :role="role" :route="route">
+      </vuestro-sub-routes>
       <!--VUEX CHILDREN-->
       <template v-if="route.meta.vuex">
         <vuestro-sub-routes :route="vuexRoute" to-path></vuestro-sub-routes>
@@ -135,7 +137,7 @@ export default {
   color: var(--vuestro-sidebar-item-active-fg);
 }
 .vuestro-mini-sidebar-icon.vuestro-router-link-active {
-  background-color: var(--vuestro-sidebar-item-hover);
+  background-color: var(--vuestro-sidebar-item-hover) !important;
   border-left: var(--vuestro-sidebar-active-border);
 }
 .vuestro-mini-sidebar-item:hover,

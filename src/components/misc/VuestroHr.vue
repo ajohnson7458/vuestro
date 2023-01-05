@@ -10,7 +10,7 @@ export default {
   name: 'VuestroHr',
   props: {
     margin: { type: String, default: '0' },                     // top/bottom margin
-    width: { type: Number, default: 100 },                      // the perc width of the parent, default 100%
+    width: { type: null, default: 100 },                      // the perc width of the parent, default 100%
     line: { type: String, default: 'solid' },                   // dotted, dashed, solid, double, groove, ridge, inset, outset
     color: { type: String, default: 'var(--vuestro-outline)' }, // the line color
   },

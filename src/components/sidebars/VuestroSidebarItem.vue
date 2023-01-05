@@ -1,11 +1,11 @@
 <template>
   <div class="vuestro-sidebar-item"
        :class="{ bottom: route.meta.sidebarBottom }">
-    <!--CHILDREN-->
-    <template v-if="route.children">
+    <!--WITH CHILDREN-->
+    <template v-if="route.children && route.children.length > 0">
       <a :class="{ 'vuestro-router-link-active': isParentRoute }"
          :style="{ 'background-color': route.meta.bgColor, '--vuestro-sidebar-fg': route.meta.fgColor }"
-         @click="toggle">
+         @click.exact="toggle">
         <vuestro-icon v-if="route.meta.icon" :name="route.meta.icon"></vuestro-icon>
         <span v-if="route.meta.svg" v-html="route.meta.svg"></span>
         <div class="vuestro-sidebar-item-title">
@@ -71,7 +71,14 @@ export default {
   },
   methods: {
     toggle() {
-      this.active = !this.active;
+      if (this.active) {
+        this.active = false;
+      } else {
+        this.active = true;
+        if (this.route.children.length === 1) {
+          this.$router.push(this.route.children[0]).catch(() => {});
+        }
+      }
     },
   }
 };
@@ -110,7 +117,7 @@ export default {
   border-left: var(--vuestro-sidebar-active-border);
 }
 .vuestro-sidebar-item > a.vuestro-router-link-exact-active {
-  background-color: var(--vuestro-sidebar-item-active-bg);
+  background-color: var(--vuestro-sidebar-item-active-bg) !important;
   color: var(--vuestro-sidebar-item-active-fg);
 }
 
