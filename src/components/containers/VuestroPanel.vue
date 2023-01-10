@@ -18,7 +18,7 @@
 <template>
   <div class="vuestro-panel"
        :class="[ `vuestro-panel-${variant}`, gutter,
-                 { isCollapsed, scroll, noStretch, noBorder, hasTitlebar, hasContent }]"
+                 { isCollapsed, collapsible, scroll, noStretch, noBorder, hasTitlebar, hasContent }]"
        :style="style">
     <!--TOOLBAR-->
     <div v-if="hasTitlebar" class="vuestro-panel-title-toolbar">
@@ -188,7 +188,8 @@ export default {
   min-width: 0;
   flex-grow: 1;
 }
-.vuestro-panel.noStretch {
+.vuestro-panel.noStretch,
+.vuestro-panel.collapsible {
   flex-grow: 0;
 }
 .vuestro-panel:not(:first-child) {

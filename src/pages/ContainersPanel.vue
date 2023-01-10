@@ -210,7 +210,7 @@
     </vuestro-card>
 
     <vuestro-card cols="6">
-      <vuestro-panel class="colorized-toolbar" collapsible collapsed no-stretch>
+      <vuestro-panel class="colorized-toolbar" collapsible collapsed>
         <template #title>Collapsible with colorized toolbar</template>
         <vuestro-container>
           <vuestro-card>
