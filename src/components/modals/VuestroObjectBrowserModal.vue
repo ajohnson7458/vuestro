@@ -20,7 +20,7 @@
         <vuestro-icon name="download"></vuestro-icon>
       </vuestro-button>
     </template>
-    <vuestro-object-browser ref="theObjectBrowser" :data="obj"></vuestro-object-browser>
+    <vuestro-object-browser ref="theObjectBrowser" :data="obj" :options="options"></vuestro-object-browser>
   </vuestro-modal>
 </template>
 
@@ -28,6 +28,7 @@
 
 export default {
   name: 'VuestroObjectBrowserModal',
+  props: ['options'], // passthrough options to vuestro-object-browser
   data() {
     return {
       active: false,

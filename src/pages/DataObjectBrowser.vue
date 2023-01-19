@@ -81,7 +81,7 @@
       <template #subheading>
         <span>VuestroObjectBrowserModal is a useful modal for inspecting raw objects</span>
       </template>
-      <vuestro-object-browser-modal ref="browserModal">
+      <vuestro-object-browser-modal ref="browserModal" :options="{ startExpanded: true }">
         <template #title>VuestroObjectBrowserModal</template>
       </vuestro-object-browser-modal>
       <vuestro-button @click="$refs.browserModal.openWithObj(testObject)">Open</vuestro-button>
