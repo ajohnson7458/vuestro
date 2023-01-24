@@ -227,7 +227,7 @@ export default {
     //    icon: 'font awesome icon string',
     //    options: ['<array of strings, only for option type>'],
     //    items: ['calls out items for array or object, object items should be a nested parameter list'],
-    //    default: 'default value',
+    //    default/value: 'default value (works for "value" key also)',
     //    collapsible: true|false,
     //    collapsed: true/false,
     //    autocomplete: {},  // prop passed to vuestro-text-fields to enable autocomplete
@@ -250,6 +250,8 @@ export default {
         return this.value[param.field];
       } else if (param.default !== undefined) {
         this.setField(param, param.default);
+      } else if (param.value !== undefined) {
+        this.setField(param, param.value);
       } else {
         return null;
       }
