@@ -126,7 +126,6 @@ export default {
 
 .vuestro-tooltip {
   display: flex;
-  align-self: center;
   position: relative;
   font-size: initial;
 }

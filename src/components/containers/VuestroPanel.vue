@@ -54,13 +54,13 @@
       <!--LIVE CONTENTS (ALWAYS IN DOM)-->
       <template v-if="!deferContent">
         <div ref="contents" v-show="!isCollapsed" class="vuestro-panel-contents" @scroll="updateScroll">
-          <slot></slot>
+          <slot :isCollapsed="isCollapsed" :toggleCollapse="toggleCollapse"></slot>
         </div>
       </template>
       <!--DEFERRED CONTENTS, USES v-if TO INSERT/REMOVE FROM DOM ON COLLAPSE TOGGLE-->
       <template v-else>
         <div ref="contents" v-if="!isCollapsed" class="vuestro-panel-contents" @scroll="updateScroll">
-          <slot></slot>
+          <slot :isCollapsed="isCollapsed" :toggleCollapse="toggleCollapse"></slot>
         </div>
       </template>
       <!--SCROLL ARROW-->
