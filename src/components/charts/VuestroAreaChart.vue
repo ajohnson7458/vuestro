@@ -354,7 +354,9 @@ export default {
   directives: {
     axis: {
       update(el, binding, vnode) {
-        d3.select(el).transition().duration(vnode.context.transition).ease(d3.easeLinear).call(binding.value[binding.arg]);
+        if (binding.value && binding.arg && binding.value[binding.arg]) {
+          d3.select(el).transition().duration(vnode.context.transition).ease(d3.easeLinear).call(binding.value[binding.arg]);
+        }
       }
     },
     animate: {

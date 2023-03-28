@@ -1,4 +1,4 @@
-/* global _ */
+/* global _, atob */
 
 import VuestroMixins from './mixins';
 
@@ -176,7 +176,7 @@ export default {
     //
     Vue.mixin(VuestroMixins);
     //
-    // GLOBALS
+    // GLOBALS ADDED TO VUE
     //
     Vue.prototype.vuestroGetRemoteComponent = async function(url) {
       const name = url.split('/').reverse()[0].match(/^(.*?)\.umd/)[1];
@@ -197,6 +197,29 @@ export default {
       });
 
       return window[name];
+    };
+    // JWT HELPERS
+    Vue.prototype.vuestroJwtParsePayload = function(jwt) {
+      if (jwt) {
+        return JSON.parse(atob(jwt.split('.')[1]));
+      }
+      return null;
+    };
+    Vue.prototype.vuestroJwtParseUsername = function(jwt, usernameField='aud') {
+      if (jwt) {
+        return Vue.vuestroJwtParsePayload(jwt)[usernameField];
+      }
+      return 'Unknown';
+    };
+    Vue.prototype.vuestroJwtValid = function(jwt) {
+      let tokenValid = false;
+      if (jwt) {
+        let payload = Vue.vuestroJwtParsePayload(jwt);
+        if (payload) {
+          tokenValid = payload.exp > new Date().getTime()/1000;
+        }
+      }
+      return tokenValid;
     };
   }
 };
