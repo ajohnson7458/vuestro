@@ -77,9 +77,9 @@ export default {
     }
   },
   beforeMount() {
-    console.log('vuestro-app beforeMount');
-    console.log('window width', window.innerWidth);
-    console.log('ua', navigator.userAgent);
+    // console.log('vuestro-app beforeMount');
+    // console.log('window width', window.innerWidth);
+    // console.log('ua', navigator.userAgent);
     if (navigator.userAgent.match(/Mobile/)) {
       console.log('vuestro-app going into MOBILE mode');
       this.$root.mobile = true;

@@ -199,17 +199,15 @@ export default {
       return window[name];
     };
     // JWT HELPERS
-    Vue.prototype.vuestroJwtParsePayload = function(jwt) {
+    Vue.prototype.vuestroJwtParsePayload = function(jwt, field) {
       if (jwt) {
-        return JSON.parse(atob(jwt.split('.')[1]));
+        let parsedPayload = JSON.parse(atob(jwt.split('.')[1]));
+        if (field) { // return field if specified
+          return parsedPayload[field];
+        }
+        return parsedPayload;
       }
       return null;
-    };
-    Vue.prototype.vuestroJwtParseUsername = function(jwt, usernameField='aud') {
-      if (jwt) {
-        return Vue.vuestroJwtParsePayload(jwt)[usernameField];
-      }
-      return 'Unknown';
     };
     Vue.prototype.vuestroJwtValid = function(jwt) {
       let tokenValid = false;
