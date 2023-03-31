@@ -178,7 +178,7 @@ export default {
     //
     // GLOBALS ADDED TO VUE
     //
-    Vue.prototype.vuestroGetRemoteComponent = async function(url) {
+    Vue.prototype.vuestroGetRemoteComponent = function(url) {
       const name = url.split('/').reverse()[0].match(/^(.*?)\.umd/)[1];
 
       if (window[name]) return window[name];
@@ -199,6 +199,16 @@ export default {
       return window[name];
     };
     // JWT HELPERS
+    Vue.prototype.vuestroJwtValid = function(jwt) {
+      let tokenValid = false;
+      if (jwt) {
+        let payload = this.vuestroJwtParsePayload(jwt);
+        if (payload) {
+          tokenValid = payload.exp > new Date().getTime()/1000;
+        }
+      }
+      return tokenValid;
+    };
     Vue.prototype.vuestroJwtParsePayload = function(jwt, field) {
       if (jwt) {
         let parsedPayload = JSON.parse(atob(jwt.split('.')[1]));
@@ -208,16 +218,6 @@ export default {
         return parsedPayload;
       }
       return null;
-    };
-    Vue.prototype.vuestroJwtValid = function(jwt) {
-      let tokenValid = false;
-      if (jwt) {
-        let payload = Vue.vuestroJwtParsePayload(jwt);
-        if (payload) {
-          tokenValid = payload.exp > new Date().getTime()/1000;
-        }
-      }
-      return tokenValid;
     };
   }
 };
