@@ -28,9 +28,7 @@ export default {
   },
   data() {
     return {
-      exampleData: [{
-        stat: 83,
-      }],
+      exampleData: [],
       layout: [],
     };
   },
@@ -39,20 +37,19 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      this.exampleData = [{
-        stat: 210,
-      }];
-      // this.exampleData.push({
-      //   stat: this.exampleData[this.exampleData.length-1].stat++
-      // });
-    }, 1000);
+      let obj = {
+        key: (new Date).toISOString(),
+        value: this.vuestroRandomInteger(1, 100),
+      };
+      this.exampleData.push(obj);
+    }, 5000);
   },
   methods: {
     loadDefaultLayout() {
       this.layout = [
         {
           id: 'w0',
-          component: 'vuestro-stat-panel',
+          component: 'vuestro-stat-widget',
           data: this.exampleData,
           options: {
             title: 'Users',
@@ -60,6 +57,7 @@ export default {
             icon: 'users',
             clickRoute: 'buttons',
             render: Vue.filter('vuestroHumanNum'),
+            showTrend: true,
           },
           position: {
             x: 0,
@@ -70,13 +68,23 @@ export default {
         },
         {
           id: 'w1',
-          component: 'vuestro-stat-panel',
-          data: [{ stat: 13328}],
+          component: 'vuestro-stat-widget',
+          data: [
+            {
+              key: (new Date(Date.now() - 86400000)).toISOString(),
+              value: 13328,
+            },
+            {
+              key: (new Date).toISOString(),
+              value: 23929,
+            },
+          ],
           options: {
             title: 'Sales',
             color: 'var(--vuestro-purple)',
             icon: 'cash-register',
             render: Vue.filter('vuestroHumanNum'),
+            showTrend: true,
           },
           position: {
             x: 3,
@@ -87,8 +95,8 @@ export default {
         },
         {
           id: 'w2',
-          component: 'vuestro-stat-panel',
-          data: [{ stat: 2373}],
+          component: 'vuestro-stat-widget',
+          data: [{ value: 2373}],
           options: {
             title: 'Logs',
             color: 'var(--vuestro-cyan)',
@@ -103,8 +111,8 @@ export default {
         },
         {
           id: 'w3',
-          component: 'vuestro-stat-panel',
-          data: [{ stat: 'running'}],
+          component: 'vuestro-stat-widget',
+          data: [{ value: 'running'}],
           options: {
             title: 'Status',
             color: 'var(--vuestro-success)',
@@ -119,7 +127,7 @@ export default {
         },
         {
           id: 'w4',
-          component: 'vuestro-chart-panel',
+          component: 'vuestro-chart-widget',
           data: this.getForceGraphData(),
           options: {
             title: 'Force Graph',
@@ -134,7 +142,7 @@ export default {
         },
         {
           id: 'w6',
-          component: 'vuestro-chart-panel',
+          component: 'vuestro-chart-widget',
           data: this.getAreaChart(),
           options: {
             title: 'Area Chart',
@@ -167,7 +175,7 @@ export default {
         },
         {
           id: 'w7',
-          component: 'vuestro-chart-panel',
+          component: 'vuestro-chart-widget',
           data: [
             {
               state: 'California',
@@ -208,7 +216,7 @@ export default {
         },
         {
           id: 'wbar',
-          component: 'vuestro-chart-panel',
+          component: 'vuestro-chart-widget',
           data: [
             {
               key: '2019-10-01T01:00:00Z',
@@ -306,7 +314,7 @@ export default {
         },
         {
           id: 'wmodal-test',
-          component: 'modal-test-widget',
+          component: 'modal-test-widget', // this is in pages/widgets
           options: {
             title: 'Modal Test',
           },
