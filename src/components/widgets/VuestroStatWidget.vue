@@ -1,6 +1,7 @@
 <template>
   <vuestro-panel class="vuestro-stat-widget" :style="style" no-border frame>
-    <vuestro-area-chart class="vuestro-stat-widget-chart"
+    <vuestro-area-chart v-if="data.length > 1"
+                        class="vuestro-stat-widget-chart"
                         :data="data"
                         :options="chartOptions">
     </vuestro-area-chart>
