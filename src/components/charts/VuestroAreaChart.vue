@@ -60,7 +60,7 @@
 
 <script>
 
-/* globals window, _ */
+/* globals _, ResizeObserver,  */
 import * as d3 from 'd3';
 import moment from 'moment';
 
@@ -171,13 +171,8 @@ export default {
   beforeMount() {
     _.merge(this, this.options);
   },
-  created() {
-    window.addEventListener('resize', this.resize);
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
-  },
   mounted() {
+    new ResizeObserver(this.resize).observe(this.$el);
     this.resize();
   },
   methods: {

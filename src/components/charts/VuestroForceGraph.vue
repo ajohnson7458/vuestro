@@ -49,7 +49,8 @@
 
 <script>
 
-/* global _ */
+/* global _, ResizeObserver */
+
 import * as d3 from 'd3';
 
 export default {
@@ -93,11 +94,8 @@ export default {
     this.graph = this.forceGraph([], []);
   },
   mounted() {
-    window.addEventListener('resize', this.resize);
+    new ResizeObserver(this.resize).observe(this.$el);
     this.resize();
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
   },
   methods: {
     forceGraph(nodes, links) {
