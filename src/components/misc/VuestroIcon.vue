@@ -1,3 +1,12 @@
+//
+// Vuestro abstraction for font-awesome icons, most options
+// are proxied here, with a few added features
+//
+// CSS Vars:
+//  --vuestro-icon-slash-width - width of slash option
+//
+//
+
 <template>
   <span class="vuestro-icon"
         :class="[`vuestro-icon-${variant}`]">
@@ -121,7 +130,7 @@ export default {
 
 .vuestro-icon-slash {
   width: 141%;
-  height: 0.3em;
+  height: var(--vuestro-icon-slash-width, 0.2em);
   position: absolute;
   top: 50%;
   /* rotate to diagonal */
