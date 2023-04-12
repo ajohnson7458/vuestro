@@ -67,7 +67,7 @@ export default {
     transform: { type: String, default: '' },
     counter: { type: Boolean, default: false },
     value: { type: Number, default: null },
-    slash: { type: String, default: false },          // set to color to render a slash over the icon
+    slash: { type: null, default: false },            // set to string color to render a slash over the icon
   },
   methods: {
     getTransform() {
