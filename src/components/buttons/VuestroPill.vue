@@ -83,6 +83,7 @@ export default {
     geopattern: { type: null, default: null },                  // uses title for geopattern, or given string
     noMargin: { type: Boolean, default: false },                // remove margins
     disabled: { type: Boolean, default: false },                // disables click and close handlers if set
+                                                                // (note this only affects those built-in buttons, not anything in the slots)
   },
   data() {
     return {
@@ -130,10 +131,12 @@ export default {
   },
   methods: {
     onClose(e) {
-      this.$emit('close', e);
+      if (!this.disabled) {
+        this.$emit('close', e);
+      }
     },
     onClick(e) {
-      if (this.$listeners.click) { // only if set
+      if (!this.disabled && this.$listeners.click) { // only if set
         this.$emit('click', e);
       }
     },
