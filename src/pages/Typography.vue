@@ -161,6 +161,9 @@
           <vuestro-icon name="tractor" size="3x" variant="success"></vuestro-icon>
           <div>variant="success"</div>
         </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="satellite-dish" size="3x" slash="var(--vuestro-red)"></vuestro-icon>
+        </vuestro-card>
         <vuestro-card>
           <vuestro-hr></vuestro-hr>
         </vuestro-card>
@@ -334,6 +337,7 @@ Body Text
         'robot',
         'rocket',
         'fa-brands fa-safari',
+        'satellite-dish',
         'save',
         'scroll',
         'search',

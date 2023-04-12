@@ -18,6 +18,9 @@
           :fixed-width="fixedWidth">
     </font-awesome-icon>
     <div v-if="counter" class="vuestro-icon-counter">{{ value }}</div>
+    <div v-if="slash" class="vuestro-icon-slash"
+         :style="{ 'background-color': slash }">
+    </div>
     <slot></slot>
   </span>
 </template>
@@ -39,22 +42,23 @@ export default {
     name: { type: String, required: true },           // font awesome icon name (use prefix for brands, etc)
     size: { type: String, default: '1x' },            // 2xs to 2xl as well as literal sizing from 1x to 10x
     scale: { type: [String, Number], default: null }, // positive number for grow, negative for shrink, does not increase size/boundaries
-    spin: { type: Boolean, default: false },          // flag to enable spin mode
-    inverse: { type: Boolean, default: false },       // flag to enable inverse mode
-    pulse: { type: Boolean, default: false },         // flag to enable pulse mode
-    bounce: { type: Boolean, default: false },        // flag to enable beat mode
-    beat: { type: Boolean, default: false },
-    fade: { type: Boolean, default: false },
-    shake: { type: Boolean, default: false },
-    flip: { type: String, default: null },
-    rotation: { type: String, default: null },
-    label: { type: String },
+    spin: { type: Boolean, default: false },          // flag to enable spin animation
+    inverse: { type: Boolean, default: false },       // flag to enable inverse animation
+    pulse: { type: Boolean, default: false },         // flag to enable pulse animation
+    bounce: { type: Boolean, default: false },        // flag to enable bounce animation
+    beat: { type: Boolean, default: false },          // flag to enable beat animation
+    fade: { type: Boolean, default: false },          // flag to enable fade animation
+    shake: { type: Boolean, default: false },         // flag to enable shake animation
+    flip: { type: String, default: null },            // flag to enable flip animation
+    rotation: { type: String, default: null },        // flag to enable rotation animation
+    label: { type: String },                          // label to add
     title: { type: String },
     variant: { type: String, default: 'none' },
     fixedWidth: { type: Boolean, default: false },
     transform: { type: String, default: '' },
     counter: { type: Boolean, default: false },
     value: { type: Number, default: null },
+    slash: { type: String, default: false },          // set to color to render a slash over the icon
   },
   methods: {
     getTransform() {
@@ -113,6 +117,15 @@ export default {
 .vuestro-app.mobile .vuestro-icon > svg {
   width: 0.8em;
   height: 0.8em;
+}
+
+.vuestro-icon-slash {
+  width: 141%;
+  height: 0.3em;
+  position: absolute;
+  top: 50%;
+  /* rotate to diagonal */
+  transform: rotate(-45deg);
 }
 
 </style>
