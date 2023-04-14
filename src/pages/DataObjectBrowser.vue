@@ -69,13 +69,57 @@
 
     <vuestro-card>
       <template #subheading>
-        <span>VuestroObjectBrowser with a string as data</span>
+        <span>VuestroObjectBrowser with a String as data</span>
       </template>
       <vuestro-panel>
         <vuestro-object-browser data="hello! I'm a string!"></vuestro-object-browser>
       </vuestro-panel>
     </vuestro-card>
 
+    <vuestro-card>
+      <template #subheading>
+        <span>VuestroObjectBrowser with a Number as data</span>
+      </template>
+      <vuestro-panel>
+        <vuestro-object-browser :data="47823473"></vuestro-object-browser>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #subheading>
+        <span>VuestroObjectBrowser with a Date as data</span>
+      </template>
+      <vuestro-panel>
+        <vuestro-object-browser :data="new Date()"></vuestro-object-browser>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #subheading>
+        <span>VuestroObjectBrowser with a Boolean as data</span>
+      </template>
+      <vuestro-panel>
+        <vuestro-object-browser :data="true"></vuestro-object-browser>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #subheading>
+        <span>VuestroObjectBrowser with a literal null as data</span>
+      </template>
+      <vuestro-panel>
+        <vuestro-object-browser :data="null"></vuestro-object-browser>
+      </vuestro-panel>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #subheading>
+        <span>VuestroObjectBrowser with a literal undefined as data</span>
+      </template>
+      <vuestro-panel>
+        <vuestro-object-browser :data="undefined"></vuestro-object-browser>
+      </vuestro-panel>
+    </vuestro-card>
 
     <vuestro-card>
       <template #subheading>
