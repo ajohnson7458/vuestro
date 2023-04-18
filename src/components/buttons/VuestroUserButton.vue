@@ -40,7 +40,7 @@ export default {
   props: {
     user: { type: String, default: '' },          // username
     avatar: { type: String, default: require('../../assets/default-user.jpg') }, // user avatar
-    role: { type: [String, Array], default: '' }, // user role, either string or array of strings
+    role: { type: [String, Array, Object], default: '' }, // user role, either string or array of strings
     link: { type: String, default: '' },          // user link
     variant: { type: String, default: 'button' }, // { button, sidebar }
     hideText: { type: Boolean, default: false },  // force hides the text

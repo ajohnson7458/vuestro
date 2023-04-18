@@ -65,7 +65,7 @@ export default {
   name: 'VuestroSidebar',
   props: {
     mini: { type: Boolean, default: false }, // mini sidebar
-    role: { type: [String, Array], default: () => [] }, // user role
+    role: { type: [String, Array, Object], default: () => [] }, // user role
     routes: {
       type: Array,
       default: function() {
