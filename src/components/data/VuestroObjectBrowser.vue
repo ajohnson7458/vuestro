@@ -1,14 +1,39 @@
 <template>
   <div class="vuestro-object-browser-item" :class="{ root: parent === 'root', noMargin }">
-    <!--ISEMPTY MESSAGE-->
-    <div v-if="empty" class="vuestro-object-browser-empty">{{ emptyMessage }}</div>
-    <!--MAIN LOOP-->
+    <!--HANDLE TOP-LEVEL PRIMITIVES-->
     <div v-if="isString(data)">
       <div class="vuestro-object-browser-item vuestro-object-browser-item-string" title="String">
         {{ data }}
       </div>
     </div>
-    <div v-else v-for="(v, k) in data">
+    <div v-else-if="isNumber(data)">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-number" title="Number">
+        {{ data }}
+      </div>
+    </div>
+    <div v-else-if="isDate(data)">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-date" title="Date">
+        {{ data }}
+      </div>
+    </div>
+    <div v-else-if="isBoolean(data)">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-bool" title="Boolean">
+        {{ data }}
+      </div>
+    </div>
+    <div v-else-if="data === null">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-null" title="literal null">
+        null
+      </div>
+    </div>
+    <div v-else-if="data === undefined">
+      <div class="vuestro-object-browser-item vuestro-object-browser-item-null" title="literal undefined">
+        undefined
+      </div>
+    </div>
+    <!--LOOP OVER ARRAYS/OBJECTS-->
+    <div v-else-if="isArray(data) && data.length > 0 || isObject(data) && Object.keys(data).length > 0"
+         v-for="(v, k) in data">
       <div class="vuestro-object-browser-item" :class="{ noMargin }">
         <div class="vuestro-object-browser-item-kv">
           <!--KEY TITLE-->
@@ -30,8 +55,8 @@
             <span v-if="isBoolean(v)" class="vuestro-object-browser-item-bool" title="Boolean">{{ v }}</span>
             <span v-if="isDate(v)" class="vuestro-object-browser-item-date" title="Date">{{ v.toISOString() }}</span>
             <span v-if="isNumber(v)" class="vuestro-object-browser-item-number" title="Number">{{ v }}</span>
-            <span v-if="v === null" class="vuestro-object-browser-item-null">null</span>
-            <span v-if="v === undefined" class="vuestro-object-browser-item-null">undefined</span>
+            <span v-if="v === null" class="vuestro-object-browser-item-null" title="literal null">null</span>
+            <span v-if="v === undefined" class="vuestro-object-browser-item-null" title="literal undefined">undefined</span>
             <!--ARRAY/OBJECT SPECIAL-->
             <div v-if="isArray(v)" class="vuestro-object-browser-expand-button"
                  @click="toggleCollapse(k)">
@@ -70,6 +95,8 @@
         </div>
       </div>
     </div>
+    <!--ISEMPTY MESSAGE-->
+    <div v-else class="vuestro-object-browser-empty">{{ emptyMessage }}</div>
     <!--EXTEND OBJECT-->
     <div v-if="isExtendable()" class="vuestro-object-add-member">
       <vuestro-button v-if="!addingMember" size="sm" round no-border no-margin @click="onAddMember">
@@ -116,18 +143,6 @@ export default {
       newMemberKey: '',
       newMemberVal: '',
     };
-  },
-  computed: {
-    empty() {
-      if (!this.data) {
-        return true;
-      } else {
-        if (this.data && Object.keys(this.data).length == 0) {
-          return true;
-        }
-      }
-      return false;
-    },
   },
   watch: {
     data() {

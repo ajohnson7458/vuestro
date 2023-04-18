@@ -80,7 +80,7 @@ export default {
       }
     },
 		onMouseEnter() {
-			this.zIndex = 0;
+			this.zIndex = 10;
 		},
 		onMouseLeave() {
 			this.zIndex = 0;
@@ -188,6 +188,7 @@ export default {
   margin: 0.2em 0.2em 0.2em auto;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 }
 
 </style>

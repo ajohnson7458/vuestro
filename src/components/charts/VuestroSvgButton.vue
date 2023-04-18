@@ -1,8 +1,8 @@
 <template>
   <g class="vuestro-svg-button">
-	<!-- BACKGROUND -->
+  <!-- BACKGROUND -->
     <rect :x="x" :y="y" :width="buttonWidth" :height="buttonHeight" :rx="rx" :ry="ry"/>
-    <!-- TEXT -->   
+    <!-- TEXT -->
     <text :x="x+buttonWidth/2" :y="y+buttonHeight-padding" text-anchor="middle" ref="text">{{buttonText}}</text>
   </g>
 </template>
@@ -22,22 +22,21 @@ export default {
     ry: { type: Number, default: 2 },
   },
   data() {
-    return {            
-        buttonWidth: 0,
-        buttonHeight: 0,
+    return {
+      buttonWidth: 0,
+      buttonHeight: 0,
     };
   },
-  watch: {},
   mounted() {
-      this.update();
+    this.update();
   },
   methods: {
-      update() {        
-        // size it
-        let size = this.$refs.text.getBBox();
-        this.buttonHeight = size.height + this.padding;
-        this.buttonWidth = size.width + this.padding;
-      }
+    update() {
+      // size it
+      let size = this.$refs.text.getBBox();
+      this.buttonHeight = size.height + this.padding;
+      this.buttonWidth = size.width + this.padding;
+    }
   },
 };
 
@@ -46,12 +45,12 @@ export default {
 <style scoped>
 
 .vuestro-svg-button > text {
-    fill: white;
-    opacity: 0.8;
-    font-size: 10px;
-    font-family: sans-serif;
-
+  fill: white;
+  opacity: 0.8;
+  font-size: 10px;
+  font-family: sans-serif;
 }
+
 .vuestro-svg-button > rect {
   fill: goldenrod;
   opacity: var(--vuestro-tooltip-opacity);

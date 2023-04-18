@@ -46,7 +46,7 @@ module.exports = {
       Vue: ['vue/dist/vue.esm.js', 'default'],
       Vuex: ['vuex/dist/vuex.esm.js', 'default'],
       _: 'lodash',
-      axios: 'axios',
+      axios: ['axios/dist/browser/axios.cjs', 'default'],
       moment: 'moment',
     }),
     new VueLoaderPlugin(),

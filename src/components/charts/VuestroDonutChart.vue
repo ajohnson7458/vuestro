@@ -72,7 +72,8 @@
 
 <script>
 
-/* global _ */
+/* global _, ResizeObserver */
+
 import * as d3 from 'd3';
 
 export default {
@@ -142,11 +143,8 @@ export default {
     _.merge(this, this.options);
   },
   mounted() {
-    window.addEventListener('resize', this.resize);
+    new ResizeObserver(this.resize).observe(this.$el);
     this.resize();
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
   },
   methods: {
     // redraw if window changes

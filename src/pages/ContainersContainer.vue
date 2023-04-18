@@ -102,6 +102,13 @@ justify-content: flex-start;
         </vuestro-container>
       </vuestro-card>
 
+      <vuestro-card>
+        <template #subheading>Resiziable container</template>
+        <vuestro-container resize="both">
+          <div>set the <vuestro-code>resize="both/horizontal/vertical"</vuestro-code></div>
+        </vuestro-container>
+      </vuestro-card>
+
 
     </vuestro-container>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="vuestro-card"
-       :class="[`basis-${cols}`, gutter, { overflowHidden, stretch, shrink, row }]"
+       :class="[`basis-${cols}`, gutter, { left, overflowHidden, stretch, shrink, row }]"
        :style="style">
     <!--SLOT FOR HEADER TEXT (only show if "heading" slot was provided)-->
     <div v-if="$scopedSlots.heading"
@@ -43,6 +43,8 @@ export default {
     gutter: { type: String, default: '' },
     scroll: { type: Boolean, default: false },
     aspect: { type: String, default: null }, // aspect-ratio CSS prop
+    resize: { type: String, default: null }, // enable browser resize control, set to 'both', 'horizontal', or 'vertical'
+    left: { type: Boolean, default: false }, // left-justify header slots instead of space-between
   },
   computed: {
     colorBarStyle() {
@@ -62,13 +64,12 @@ export default {
       if (this.aspect) {
         ret['aspect-ratio'] = this.aspect;
       }
+      if (this.resize) {
+        ret.resize = this.resize;
+        ret.overflow = 'auto';
+      }
       return ret;
     }
-  },
-  methods: {
-    resize() {
-      this.$slots.default.resize && this.$slots.default.resize();
-    },
   },
 };
 
@@ -135,6 +136,9 @@ export default {
   align-items: center;
   cursor: default;
 }
+.vuestro-card.left .vuestro-card-heading {
+  justify-content: flex-start;
+}
 
 .vuestro-card-subheading {
   font-size: var(--vuestro-card-subheading-font-size);
@@ -146,6 +150,9 @@ export default {
   align-items: center;
   cursor: default;
 }
+.vuestro-card.left .vuestro-card-subheading {
+  justify-content: flex-start;
+}
 
 .vuestro-card-description {
   font-size: var(--vuestro-card-description-font-size);
@@ -156,6 +163,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   cursor: default;
+}
+.vuestro-card.left .vuestro-card-description {
+  justify-content: flex-start;
 }
 
 .vuestro-card.basis-0 {

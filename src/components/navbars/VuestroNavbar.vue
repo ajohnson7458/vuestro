@@ -162,6 +162,8 @@ export default {
 .vuestro-navbar-logo {
   font-size: 2em;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .vuestro-navbar-slot {

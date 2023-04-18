@@ -94,7 +94,7 @@
 
 <script>
 
-/* global _ */
+/* global _, ResizeObserver */
 import * as d3 from 'd3';
 import * as Sankey from 'd3-sankey';
 
@@ -159,12 +159,9 @@ export default {
     _.merge(this, this.options);
   },
   mounted() {
-    window.addEventListener('resize', this.resize);
+    new ResizeObserver(this.resize).observe(this.$el);
     this.processData();
     this.resize();
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
   },
   methods: {
     processData() {

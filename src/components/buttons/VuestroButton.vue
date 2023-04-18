@@ -278,6 +278,7 @@ export default {
 .vuestro-button-inner.mobile.round {
   border-radius: 50%;
   padding: 0;
+  flex-grow: 0;
 }
 .vuestro-button-inner.round.sm,
 .vuestro-button-inner.checkbox.sm {

@@ -8,7 +8,7 @@
 <script>
 
 export default {
-  name: 'VuestroChartPanel',
+  name: 'VuestroChartWidget',
   props: {
     data: { required: true },
     options: { type: Object, required: true },

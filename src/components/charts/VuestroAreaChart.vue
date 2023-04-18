@@ -60,7 +60,7 @@
 
 <script>
 
-/* globals window, _ */
+/* globals _, ResizeObserver,  */
 import * as d3 from 'd3';
 import moment from 'moment';
 
@@ -171,13 +171,8 @@ export default {
   beforeMount() {
     _.merge(this, this.options);
   },
-  created() {
-    window.addEventListener('resize', this.resize);
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resize);
-  },
   mounted() {
+    new ResizeObserver(this.resize).observe(this.$el);
     this.resize();
   },
   methods: {
@@ -354,7 +349,9 @@ export default {
   directives: {
     axis: {
       update(el, binding, vnode) {
-        d3.select(el).transition().duration(vnode.context.transition).ease(d3.easeLinear).call(binding.value[binding.arg]);
+        if (binding.value && binding.arg && binding.value[binding.arg]) {
+          d3.select(el).transition().duration(vnode.context.transition).ease(d3.easeLinear).call(binding.value[binding.arg]);
+        }
       }
     },
     animate: {

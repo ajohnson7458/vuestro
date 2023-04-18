@@ -5,6 +5,27 @@
     </vuestro-card>
 
     <vuestro-card>
+      <template #subheading>VuestroTitle</template>
+      <template #description>Simple text title used by a few Vuestro components for uniformity, provides an icon slot and a spinner prop</template>
+      <vuestro-title spinner>
+        <template #icon>
+          <vuestro-icon name="teeth"></vuestro-icon>
+        </template>
+        Used for Title text on components
+      </vuestro-title>
+    </vuestro-card>
+
+    <vuestro-card>
+      <template #subheading>VuestroAutoText</template>
+      <template #description>Fit text to width, with optional wrapping</template>
+      <vuestro-container style="height: 100px" no-wrap resize="both">
+        <vuestro-card>
+          <vuestro-auto-text middle>Font size will be automatically set to fit a fixed width</vuestro-auto-text>
+        </vuestro-card>
+      </vuestro-container>
+    </vuestro-card>
+
+    <vuestro-card>
       <template #subheading>VuestroCleanKvp</template>
       <template #description>A simple and clean way to display key value pairs; placing more emphasis on the important part, the value.</template>
       <vuestro-container column>
@@ -139,6 +160,9 @@
         <vuestro-card cols="1" class="icon-tile">
           <vuestro-icon name="tractor" size="3x" variant="success"></vuestro-icon>
           <div>variant="success"</div>
+        </vuestro-card>
+        <vuestro-card cols="1" class="icon-tile">
+          <vuestro-icon name="satellite-dish" size="3x" slash="var(--vuestro-red)"></vuestro-icon>
         </vuestro-card>
         <vuestro-card>
           <vuestro-hr></vuestro-hr>
@@ -313,6 +337,7 @@ Body Text
         'robot',
         'rocket',
         'fa-brands fa-safari',
+        'satellite-dish',
         'save',
         'scroll',
         'search',

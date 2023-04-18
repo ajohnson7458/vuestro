@@ -1,4 +1,4 @@
-/* global _ */
+/* global _, atob */
 
 import VuestroMixins from './mixins';
 
@@ -47,9 +47,7 @@ export default {
     // render the given string or UNIX time or date object as HH:MM:SS
     Vue.filter('vuestroHMS', (d) => {
       let hours, minutes, seconds;
-      if (d === null || d === undefined) {
-        return '';
-      } else if (_.isString(d)) {
+      if (_.isString(d)) {
         d = new Date(d);
         hours = d.getHours();
         minutes = d.getMinutes();
@@ -59,50 +57,52 @@ export default {
         hours = d.getUTCHours();
         minutes = d.getUTCMinutes();
         seconds = d.getUTCSeconds();
+      } else {
+        return '-';
       }
       return `${('0' + hours).slice(-2)}:${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`;
     });
     // render the given string or UNIX time or date object as ISO8601
     Vue.filter('vuestroIsoDate', (d) => {
-      if (d === null || d === undefined) {
-        return '';
-      } else if (_.isString(d)) {
+      if (_.isString(d) && d.length > 0) {
         d = new Date(d);
       } else if (_.isNumber(d)) {
         d = new Date(parseInt(d, 10)*1000);
+      } else {
+        return '-';
       }
       return d.toISOString();
     });
     // render the given string or UNIX time or date object as a local datetime
     Vue.filter('vuestroDate', (d) => {
-      if (d === null || d === undefined) {
-        return '';
-      } else if (_.isString(d)) {
+      if (_.isString(d) && d.length > 0) {
         d = new Date(d);
       } else if (_.isNumber(d)) {
         d = new Date(parseInt(d, 10)*1000);
+      } else {
+        return '-';
       }
       return d.toLocaleString();
     });
     // render the given string or UNIX time or date object as a local date only
     Vue.filter('vuestroLocaleDate', (d) => {
-      if (d === null || d === undefined) {
-        return '';
-      } else if (_.isString(d)) {
+      if (_.isString(d) && d.length > 0) {
         d = new Date(d);
       } else if (_.isNumber(d)) {
         d = new Date(parseInt(d, 10)*1000);
+      } else {
+        return '-';
       }
       return d.toLocaleDateString();
     });
     // render the given string or UNIX time or date object as a local time only
     Vue.filter('vuestroLocaleTime', (d) => {
-      if (d === null || d === undefined) {
-        return '';
-      } else if (_.isString(d)) {
+      if (_.isString(d) && d.length > 0) {
         d = new Date(d);
       } else if (_.isNumber(d)) {
         d = new Date(parseInt(d, 10)*1000);
+      } else {
+        return '-';
       }
       return d.toLocaleTimeString();
     });
@@ -176,9 +176,9 @@ export default {
     //
     Vue.mixin(VuestroMixins);
     //
-    // GLOBALS
+    // GLOBALS ADDED TO VUE
     //
-    Vue.prototype.vuestroGetRemoteComponent = async function(url) {
+    Vue.prototype.$vuestroGetRemoteComponent = function(url) {
       const name = url.split('/').reverse()[0].match(/^(.*?)\.umd/)[1];
 
       if (window[name]) return window[name];
@@ -197,6 +197,27 @@ export default {
       });
 
       return window[name];
+    };
+    // JWT HELPERS
+    Vue.prototype.$vuestroJwtParsePayload = function(jwt, field) {
+      if (jwt) {
+        let parsedPayload = JSON.parse(atob(jwt.split('.')[1]));
+        if (field) { // return field if specified
+          return parsedPayload[field];
+        }
+        return parsedPayload;
+      }
+      return null;
+    };
+    Vue.prototype.$vuestroJwtValid = function(jwt) {
+      let tokenValid = false;
+      if (jwt) {
+        let payload = Vue.prototype.$vuestroJwtParsePayload(jwt);
+        if (payload) {
+          tokenValid = payload.exp > new Date().getTime()/1000;
+        }
+      }
+      return tokenValid;
     };
   }
 };

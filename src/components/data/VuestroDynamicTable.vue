@@ -59,12 +59,15 @@
                    :value="[c]"
                    :group="{ put: false, name: 'vuestro-multi-select' }"
                    @start="draggingValue = true"
-                   @end = "draggingValue = false">
+                   @end="draggingValue = false">
           <span>{{ c }}</span>
         </draggable>
       </template>
+      <td v-if="draggingValue"></td>
+      <td v-if="draggingValue"></td>
       <td v-if="columns.length == 0"></td>
     </template>
+    <!--DETAIL ROW-->
     <template #detail="{ item }">
       <draggable class="vuestro-dynamic-table-pill-tray"
                  :value="Object.keys(item)"
@@ -74,9 +77,12 @@
                            put: false
                          }"
                  :sort="false"
+                 @start="draggingValue = true"
+                 @end="draggingValue = false"
                  :clone="getHeader">
         <div class="vuestro-dynamic-table-pill-wrapper" v-for="(v, k) of item" :key="k+v">
-          <vuestro-pill draggable geopattern>
+          <!--KEY/VALUE PILLS-->
+          <vuestro-pill draggable geopattern style="--vuestro-control-margin-v: 1px">
             <template #title>{{ k }}</template>
             <template #value>{{ v }}</template>
           </vuestro-pill>
@@ -108,6 +114,7 @@ export default {
       draggingValue: false,
       columns: [],
       tableOptions: {
+        scroll: true,
         transparentHeader: true,
         columns: [],
       },
@@ -178,6 +185,12 @@ export default {
     },
     onToggleFilterBar() {
       this.showFilters = !this.showFilters;
+    },
+    expandAll() {
+      this.$refs.theTable.expandAll();
+    },
+    collapseAll() {
+      this.$refs.theTable.collapseAll();
     },
   },
 };

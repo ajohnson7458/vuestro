@@ -28,12 +28,16 @@
         </template>
         <template #title>{{ i.sender }}</template>
         <template #description>{{ i.subject }}</template>
-         <template #content>Some Content</template>
+        <template #content>Some Content</template>
         <template #buttons>
           <vuestro-button round no-border size="sm" @click="onEdit(i)">
             <vuestro-icon name="pen"></vuestro-icon>
           </vuestro-button>
 					<vuestro-confirm @confirm="onConfirm(i)"></vuestro-confirm>
+					<vuestro-dropdown right close-on-leave>
+					  <template #title>Dropdown</template>
+					  <vuestro-list-button @click="onDropdownSelect('Item 1')">Item 1</vuestro-list-button>
+					</vuestro-dropdown>
         </template>
       </vuestro-list-item>
     </vuestro-card>
@@ -92,6 +96,9 @@ export default {
     },
     onClick(i) {
       this.selectedItem = i;
+    },
+    onDropdownSelect(d) {
+      alert(d);
     },
     onEdit(i) {
       alert(`looks like you want to edit ${JSON.stringify(i)}`);
