@@ -33,7 +33,7 @@ export default {
     VuestroSidebarMixins,
   ],
   props: {
-    role: { type: [String, Array], default: () => [] }, // user role
+    role: { type: [String, Array, Object], default: () => [] }, // user role
     route: { type: Object, required: true },
     show: { type: Boolean, default: true },
     toPath: { type: Boolean, default: false }, // build a path manually
