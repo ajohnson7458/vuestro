@@ -52,7 +52,7 @@
                  @keyup="onKeyup">
           </input>
           <!--CLEAR BUTTON-->
-          <vuestro-button v-if="!single" round size="sm" no-border no-margin @click="clear">
+          <vuestro-button v-if="clearable" round size="sm" no-border no-margin @click="clear">
             <vuestro-icon name="times"></vuestro-icon>
           </vuestro-button>
         </div>
@@ -96,6 +96,7 @@ export default {
     valueField: { type: String, default: 'value' },   // the field name for the values
     fitWithinPanel: { type: Boolean, default: false }, // make dropdown fit within the first parent VuestroPanel
     readonly: { type: Boolean, default: false },      // true for readonly
+    clearable: { type: Boolean, default: false },     // set true to show X button to clear
   },
   data() {
     return {

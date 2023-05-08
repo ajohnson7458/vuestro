@@ -125,7 +125,7 @@ export default {
   --vuestro-control-md-height: 24px;
   --vuestro-control-lg-height: 30px;
   --vuestro-control-xl-height: 36px;
-  --vuestro-control-margin-v: 5px;
+  --vuestro-control-margin-v: 2px;
   --vuestro-control-margin-h: 2px;
   --vuestro-primary-transition-time: 0.4s;
   --vuestro-secondary-transition-time: 0.2s;
